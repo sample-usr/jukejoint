@@ -1,0 +1,14 @@
+{
+  "name": "jukejoint",
+  "private": true,
+  "workspaces": {
+    "packages": [
+      "./jukejoint_streamer",
+      "./jukejoint_frontend",
+      "./jukejoint_common"
+    ]
+  },
+  "devDependencies": {
+    "lerna": "^3.4.3"
+  }
+}
