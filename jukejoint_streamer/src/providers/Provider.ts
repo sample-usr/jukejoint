@@ -11,7 +11,6 @@ import { IProvider } from '@jukejoint/common/lib/interfaces';
 export default class Provider {
 
   static getProviderByType = (type:PROVIDERS):IProvider => {
-    console.log(type);
     switch (type) {
       case PROVIDERS.YOUTUBE:
         return YoutubeProvider.getInstance();
@@ -19,6 +18,21 @@ export default class Provider {
         return BandcampProvider.getInstance();
       default:
         return null;
+    }
+  }
+
+  static getProviderByURL = (url:string):IProvider => {
+    const youtubeRegExp = /^.*(youtu.be\/|v\/|u\/\w\/|embed\/|watch\?v=|\&v=|\?v=)([^#\&\?]*).*/;
+    const youtubeMatch = url.match(youtubeRegExp);
+    const bandcampRegExp = /^.*bandcamp.*/;
+    const bandcampMatch = url.match(bandcampRegExp);
+
+    if (youtubeMatch) {
+      return YoutubeProvider.getInstance();
+    } else if (bandcampMatch) {
+      return BandcampProvider.getInstance();
+    } else {
+      return null;
     }
   }
 

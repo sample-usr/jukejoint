@@ -21,17 +21,17 @@ class PlaylistAddModal extends Component<IProps, any> {
                     <IcoClose className={`${stylesHelpers.pointer} ${stylesHelpers.floatRight}`} onClick={this.props.toggleAddSongModal} />
                 </h4>
 
-                <Tabs titles={['Paste link', 'Search youtube', 'Choose playlist']}>
+                <Tabs titles={['Search youtube', 'Paste link', 'Choose playlist']}>
+                    {/* YOUTUBE SEARCH */}
+                    <PlaylistYoutubeSearch toggleAddSongModal={this.props.toggleAddSongModal} />
+                    
                     {/* PASTE LINK */}
                     <PlaylistAddLink toggleAddSongModal={this.props.toggleAddSongModal} />
 
-                    {/* YOUTUBE SEARCH */}
-                    <PlaylistYoutubeSearch toggleAddSongModal={this.props.toggleAddSongModal} />
-
                     {/* PLAYLISTS */}
                     <ul className={queueStyles.list}>
-                        <PlaylistQueue id="aaa" title="Random title" description="Description??" img={TestImg} />
                         <PlaylistQueue id="sss" title="Video title" description="say Whaaaaaat?!" img={TestImg} />
+                        <PlaylistQueue id="aaa" title="Random title" description="Description??" img={TestImg} />
                         <PlaylistQueue id="ddd" title="Sir Titulus" description="Description here" img={TestImg} />
                     </ul>
                 </Tabs>

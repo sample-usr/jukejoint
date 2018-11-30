@@ -75,8 +75,12 @@ class PlaylistYoutubeSearch extends Component<IProps, IState> {
       });
   }
 
-  public addSongToPlaylist = (songId: string) => {
-    PlayerService.getInstance().queueSong(`https://www.youtube.com/watch?v=${songId}`);
+  public addSongToPlaylist = async (songId: string) => {
+    const res = await PlayerService.getInstance().queueSong(`https://www.youtube.com/watch?v=${songId}`);
+    console.log('res', res);
+    if (res.status === 200) {
+      this.props.toggleAddSongModal();
+    }
   }
 
   public render() {
