@@ -7,7 +7,7 @@ After=network-online.target
 Type=idle
 User=pi
 EnvironmentFile=/home/pi/.env
-ExecStart=/usr/bin/python /home/pi/jukejoint/auto_deploy/auto_deploy.py
+ExecStart=/usr/bin/python3 /home/pi/jukejoint/auto_deploy/auto_deploy.py
 Restart=always
 StartLimitBurst=0
 
