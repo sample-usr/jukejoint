@@ -10,10 +10,10 @@ interface ISong {
   providerType: PROVIDERS
 }
 
-interface IPlayerState {
+interface IPlayer {
   volume:number;
   currentSong:SongModel;
   queue:SongModel[];
 }
 
-export default IPlayerState;
+export default IPlayer;

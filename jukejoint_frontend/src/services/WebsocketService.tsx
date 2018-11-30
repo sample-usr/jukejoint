@@ -1,4 +1,4 @@
-
+import { IPlayer } from '@jukejoint/common/lib/interfaces';
 class Socket {
   // External Dependencies
   private socketUrl?: string;
@@ -6,6 +6,7 @@ class Socket {
   private ws?: WebSocket;
   private onOpenCallbacks:  Array<() => any> = [];
   private keepAliveInterval: any;
+  public playerState = null;
 
 
   public setDependencies = (socketUrl: string) => {
@@ -42,7 +43,7 @@ class Socket {
       this.onOpenCallbacks.forEach((cb) => cb() );
 
       if (!this.keepAliveInterval) {
-        this.keepAliveInterval = setInterval(this.keepAliveMessage, 2000);
+        this.keepAliveInterval = setInterval(this.keepAliveMessage, 5000);
       }
 
     };
@@ -50,7 +51,7 @@ class Socket {
     this.ws.onmessage = (e: any) => {
 
       const msg = JSON.parse(e.data);
-
+      this.playerState = msg;
       console.log(msg);
     };
 
