@@ -37,7 +37,7 @@ if __name__ == "__main__":
             pullChanges = git("--git-dir=" + gitDir + ".git/", "--work-tree=" + gitDir, "pull")
             print("changes pulled")
             # build
-            p = subprocess.call("yarn --cwd jukejoint_streamer/ build", shell=True)
+            p = subprocess.call("yarn --cwd jukejoint_streamer/ watch", shell=True)
             p = subprocess.call("yarn --cwd jukejoint_frontend/ build", shell=True)
             # restart services
             p = subprocess.call("sudo systemctl restart shittydj.service", shell=True)

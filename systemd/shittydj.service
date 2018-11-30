@@ -7,7 +7,7 @@ After=network-online.target
 Type=idle
 User=pi
 EnvironmentFile=/home/pi/.env
-ExecStart=/home/pi/jukejoint/jukejoint_streamer/src/server.ts
+ExecStart=/usr/bin/node /home/pi/jukejoint/jukejoint_streamer/src/server.ts
 Restart=always
 StartLimitBurst=0
 
