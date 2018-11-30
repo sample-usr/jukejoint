@@ -18,7 +18,7 @@ export class PlayerService {
 
     queueSong = async (songURL: string) => {
       const res = await apiRequest(this.api + '/add_song', API_METHOD_TYPE.POST, { songURL });
-        
+
       console.log('queueSong request:', res);
         
       return res;
