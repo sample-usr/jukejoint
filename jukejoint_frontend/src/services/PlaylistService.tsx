@@ -42,15 +42,17 @@ export class PlaylistService {
     }
 
     getPlaylists = async () => {
-      const res = await apiRequest(this.api + '/getCurrentSong', API_METHOD_TYPE.GET);
+      // TODO: get from socket?
+    
+      // const res = await apiRequest(this.api + '/getCurrentSong', API_METHOD_TYPE.GET);
 
-      console.log('getCurrentSong request:', res);
+      // console.log('getCurrentSong request:', res);
 
-      return res; 
+      // return res; 
     }
 
     getCurrentSong = async () => {
-      const res = await apiRequest(this.api + '/getCurrentSong', API_METHOD_TYPE.GET);
+      const res = await apiRequest(this.api + '/get_current_song', API_METHOD_TYPE.GET);
 
       console.log('getCurrentSong request:', res);
 
