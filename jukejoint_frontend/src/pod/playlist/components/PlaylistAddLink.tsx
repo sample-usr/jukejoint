@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import styles from './PlaylistAddLink.module.css';
+import styles from './styles/PlaylistAddLink.module.css';
 import stylesHelpers from '../../../assets/css/helpers.module.css'
 
 interface IState {

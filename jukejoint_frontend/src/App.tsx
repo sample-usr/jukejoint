@@ -1,6 +1,9 @@
 import React, { Component } from 'react';
 import { BrowserRouter as Router, Route, Link } from 'react-router-dom';
 
+import './assets/css/reset.css';
+import './assets/css/base.css';
+
 // Utils
 // Constants
 // Actions
@@ -18,8 +21,8 @@ class App extends Component {
     return (
       <Router>
         <div>
-          <Route exact path="/" component={HomeRouter}/>
-          <Route exact path="/playlist" component={PlaylistRouter}/>
+          <Route exact path="/" component={HomeRouter} />
+          <Route exact path="/playlist" component={PlaylistRouter} />
         </div>
       </Router>
     );

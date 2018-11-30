@@ -1,14 +1,25 @@
+import * as router from 'koa-router';
+import IPlayerState from '../../../jukejoint_common/src/interfaces/IPlayer';
+
 export default class WebsocketService {
-  private static instance:WebsocketService;
-  private wsContext:any;
-  private constructor(ctx:any) {
-    WebsocketService.instance.wsContext = ctx;
+
+  private connections: router.IRouterContext[];
+
+  public register(ws: router.IRouterContext) {
+
+    this.connections.push(ws);
   }
 
-  static getInstance(ctx:any) {
-    if (!WebsocketService.instance) {
-      WebsocketService.instance = new WebsocketService(ctx);
-    }
-    return WebsocketService.instance;
+  public sendMsg(state: IPlayerState) {
+    const msg = JSON.stringify(state);
+
+    this.connections = this.connections
+      .filter((ctx) => ctx.websocket.OPEN === ctx.websocket.readyState)
+      .map((ctx) => {
+        ctx.websocket.send(msg);
+        return ctx;
+      });
   }
 }
+
+export const websocketInstance = new WebsocketService();

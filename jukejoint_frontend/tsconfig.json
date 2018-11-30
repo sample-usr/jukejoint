@@ -1,6 +1,9 @@
 {
+  "lib": [
+    "ES2015"
+  ],
   "compilerOptions": {
-    "target": "es5",
+    "target": "es6",
     "allowJs": true,
     "skipLibCheck": false,
     "esModuleInterop": true,

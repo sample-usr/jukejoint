@@ -1,7 +1,8 @@
 const koa = require('koa');
-const router = require('koa-router');
+import * as router from 'koa-router';
 const websockify = require('koa-websocket');
 const bodyParser = require('koa-bodyparser');
+import { websocketInstance } from './services/WebsocketService';
 
 const app  = new koa();
 const ws 	 = new router();
@@ -17,6 +18,9 @@ ws.get('/ping', async (ctx:any) => {
 		console.log(message);
 		ctx.websocket.send("asdf" + message);
 	})
+ws.get('/register', async (ctx: router.IRouterContext) => {
+
+	websocketInstance.register(ctx);
 });
 
 http.post('/add_song', PlayerController.addSong)

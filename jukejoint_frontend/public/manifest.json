@@ -1,6 +1,6 @@
 {
-  "short_name": "React App",
-  "name": "Create React App Sample",
+  "short_name": "ShittyDJ",
+  "name": "Play your shitty songs",
   "icons": [
     {
       "src": "favicon.ico",
