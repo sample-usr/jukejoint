@@ -27,7 +27,7 @@ export class PlayerService {
     }
 
     queueSong = async (songURL: string, providerType: PROVIDERS) => {
-      const res = await apiRequest(this.api + '/queueSong', API_METHOD_TYPE.POST, { songURL, providerType });
+      const res = await apiRequest(this.api + '/add_song', API_METHOD_TYPE.POST, { songURL, providerType });
         
       console.log('queueSong request:', res);
         
@@ -43,7 +43,7 @@ export class PlayerService {
     }
 
     pause = async () => {
-      const res = await apiRequest(this.api + '/pause', API_METHOD_TYPE.GET);
+      const res = await apiRequest(this.api + '/pause_song', API_METHOD_TYPE.GET);
         
       console.log('pause request:', res);
         
@@ -51,7 +51,7 @@ export class PlayerService {
     }
 
     increaseVolume = async () => {
-      const res = await apiRequest(this.api + '/increaseVol', API_METHOD_TYPE.GET);
+      const res = await apiRequest(this.api + '/increase_volume', API_METHOD_TYPE.GET);
         
       console.log('increaseVol request:', res);
         
@@ -59,7 +59,7 @@ export class PlayerService {
     };
 
     decreaseVolume = async () => {
-      const res = await apiRequest(this.api + '/decreaseVol', API_METHOD_TYPE.GET);
+      const res = await apiRequest(this.api + '/decrease_volume', API_METHOD_TYPE.GET);
         
       console.log('decreaseVol request:', res);
         
@@ -67,7 +67,7 @@ export class PlayerService {
     }
 
     getCurrentSong = async () => {
-      const res = await apiRequest(this.api + '/getCurrentSong', API_METHOD_TYPE.GET);
+      const res = await apiRequest(this.api + '/get_current_song', API_METHOD_TYPE.GET);
 
       console.log('getCurrentSong request:', res);
 
