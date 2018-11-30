@@ -1,7 +1,17 @@
 import Provider from '../providers/Provider';
 import Player from '../player/Player';
 
+import { IPlayer } from '@jukejoint/common/lib/interfaces'
+
+import { websocketInstance } from '../services/WebsocketService';
+
 const player = Player.getInstance();
+
+const tempIPlayer:IPlayer = {
+ volume: 0,
+ currentSongId: "asdf",
+ playlist:null
+}
 
 export async function addSong(ctx:any) {
   const newSong = await Provider.getSongInfo(ctx.body.songURL, ctx.body.providerType);
@@ -13,7 +23,9 @@ export async function addSong(ctx:any) {
 }
 
 export async function pauseSong(ctx:any) {
-  await player.pause();
+  // await player.pause();
+  console.log('in pause');
+  websocketInstance.sendMsg(tempIPlayer);
   ctx.status = 200;
 }
 
