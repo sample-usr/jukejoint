@@ -3,8 +3,6 @@ from sh import git
 import time
 import os, sys
 
-aggregated = ""
-
 
 def CheckForUpdate(workingDir):
     print("Fetching most recent code from source..." + workingDir)
@@ -40,7 +38,8 @@ def CheckForUpdate(workingDir):
 
 if __name__ == "__main__":
     checkTimeSec = 2
-    gitDir = "./../"
+    gitDir = os.path.dirname(os.path.realpath(__file__)) + "/../"
+    print(gitDir)
     while True:
         print("*********** Checking for code update **************")
 
@@ -48,7 +47,7 @@ if __name__ == "__main__":
             # stop running services
 
             # pull changes
-            #pullChanges = git("--git-dir=" + gitDir + ".git/", "--work-tree=" + gitDir, "pull")
+            pullChanges = git("--git-dir=" + gitDir + ".git/", "--work-tree=" + gitDir, "pull")
             print("changes pulled")
             # restart services
 
