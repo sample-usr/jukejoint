@@ -1,6 +1,7 @@
 const koa = require('koa');
-const router = require('koa-router');
+import * as router from 'koa-router';
 const websockify = require('koa-websocket');
+import { websocketInstance } from './services/WebsocketService';
 
 const app  = new koa();
 const ws 	 = new router();
@@ -8,11 +9,9 @@ const http = new router();
 
 websockify(app);
 
-ws.get('/ping', async (ctx:any) => {
-	ctx.websocket.on('message', (message:any) => {
-		console.log(message);
-		ctx.websocket.send("asdf" + message);
-	})
+ws.get('/register', async (ctx: router.IRouterContext) => {
+
+	websocketInstance.register(ctx);
 });
 
 http.get('/hello', (ctx:any, next:any) => {
