@@ -22,9 +22,9 @@ export default class Player {
     return Player.instance;
   }
 
-  private speaker;
-  private decoder;
-  private stream;
+  private speaker:any;
+  private decoder:any;
+  private stream:any;
   private isPlaying = false;
   private currentSong:SongModel;
   private SPEAKER_CLOSE_WAIT = 500;
@@ -132,7 +132,7 @@ export default class Player {
   }
 
   public increaseVolume = () => {
-    loudness.getVolume((err, vol) => {
+    loudness.getVolume((err:any, vol:any) => {
       vol += 5;
       loudness.setVolume(vol, () => {
         console.log('setted Volume to', vol)
@@ -141,7 +141,7 @@ export default class Player {
   }
 
   public decreaseVolume = () => {
-    loudness.getVolume((err, vol) => {
+    loudness.getVolume((err:any, vol:any) => {
       vol -= 5;
       loudness.setVolume(vol, () => {
         console.log('setted Volume to', vol)
