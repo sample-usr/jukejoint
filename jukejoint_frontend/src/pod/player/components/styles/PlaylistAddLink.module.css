@@ -1,0 +1,20 @@
+@value variables: "../../../../assets/css/variables.css";
+@value --fontColor, --black from variables;
+.inputBtn {
+    border-radius: 3px;
+    border: 1px solid --fontColor;
+    box-sizing: border-box;
+    font-size: 14px;
+    height: 35px;
+    outline: 0;
+    padding: 0 10px;
+    width: calc(100% - 130px);
+    -webkit-appearance: none;
+}
+
+.btn {
+    background: --fontColor;
+    color: --black;
+    width: 120px !important;
+    float: right;
+}

@@ -1,0 +1,8 @@
+@value --black: #222;
+@value --gray: #323232;
+@value --fontColor: #ddd;
+
+@value --headerHeight: 120px;
+@value --footerHeight: 60px;
+@value --songImgWidth: 120px;
+@value --songImgHeight: 90px;

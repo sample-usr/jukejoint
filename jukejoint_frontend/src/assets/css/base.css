@@ -1,0 +1,39 @@
+@value variables: "./variables.css";
+@value --black, --fontColor from variables;
+
+html,
+body {
+    height: 100%;
+}
+
+body {
+    -moz-osx-font-smoothing: grayscale;
+    -webkit-font-smoothing: antialiased;
+    background: --black;
+    box-sizing: border-box;
+    color: --fontColor;
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Roboto", "Oxygen", "Ubuntu", "Cantarell", "Fira Sans", "Droid Sans", "Helvetica Neue", sans-serif;
+    overflow: hidden;
+    position: relative;
+}
+
+strong {
+    font-weight: 500;
+}
+
+h2 {
+    font-size: 20px;
+    font-weight: 500;
+    line-height: 50px;
+    margin-bottom: 20px;
+}
+
+img {
+    max-width: 100%;
+}
+
+svg {
+  width: 25px;
+  height: 25px;
+  fill:--fontColor;
+}

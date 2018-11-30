@@ -1,0 +1,39 @@
+@value variables: "../../assets/css/variables.css";
+@value --footerHeight, --gray from variables;
+
+.ico {
+  composes: ico from "../footer/footer.module.css";
+}
+
+.volIco {
+  composes: playPauseBtn from "../footer/footer.module.css";
+}
+
+.wrapper {
+  width: --footerHeight;
+  float: right;
+}
+
+.icoVolWrapper {
+  position: relative;
+  z-index: 20;
+  background: --gray;
+  width: --footerHeight;
+}
+
+.control {
+  background: --gray;
+  border-top-left-radius: 3px;
+  bottom: calc(--footerHeight * -1);
+  line-height: 40px;
+  padding-top: 5px;
+  position: fixed;
+  right: 0;
+  text-align: center;
+  transition: bottom 300ms ease 0s;
+  width: --footerHeight;
+}
+.show {
+    bottom: --footerHeight !important;
+    transition: bottom 300ms ease 0s;
+}

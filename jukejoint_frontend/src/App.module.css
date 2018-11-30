@@ -1,0 +1,31 @@
+@value variables: "./assets/css/variables.css";
+@value --gray, --headerHeight, --footerHeight from variables;
+
+.wrapper {
+    height: calc(100% - --headerHeight + --footerHeight);
+    position: relative;
+    top: --headerHeight;
+    overflow: auto;
+    padding: 15px 15px 10px;
+    box-sizing: border-box;
+}
+
+.addSongModal {
+    background: --gray;
+    bottom: 0;
+    box-sizing: border-box;
+    height: 100%;
+    opacity: 0;
+    padding: 15px;
+    position: absolute;
+    top: 0;
+    visibility: hidden;
+    width: 100%;
+    z-index: 300;
+    transition: opacity 0.5s, visibility 0s 0.5s;
+}
+.visible {
+  transition: opacity 0.5s !important;
+  visibility: visible !important;
+  opacity: 1 !important;
+}

@@ -1,0 +1,18 @@
+@value variables: "../../assets/css/variables.css";
+@value --fontColor from variables;
+
+.time {
+  bottom: 10px;
+  font-size: 11px;
+  line-height: 11px;
+  position: fixed;
+  width: 100%;
+}
+
+.bar {
+  background: --fontColor;
+  bottom: 0;
+  height: 3px;
+  left: 0;
+  position: fixed;
+}

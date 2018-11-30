@@ -1,0 +1,33 @@
+@value variables: "../../assets/css/variables.css";
+@value --gray, --footerHeight from variables;
+
+.wrapper {
+  background: --gray;
+  bottom: 0;
+  box-sizing: border-box;
+  height: --footerHeight;
+  left: 0;
+  line-height: --footerHeight;
+  position: fixed;
+  text-align: center;
+  width: 100%;
+  z-index: 100;
+}
+
+.ico {
+  vertical-align: middle;
+}
+
+.playPauseBtn {
+  float: left;
+  cursor: pointer;
+  width: --footerHeight;
+}
+
+.songInfo {
+  float: left;
+  font-size: 12px;
+  line-height: 50px;
+  width: calc(100% - --footerHeight - --footerHeight);
+  font-weight: 500;
+}

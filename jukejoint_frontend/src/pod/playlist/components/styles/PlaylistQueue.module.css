@@ -1,0 +1,42 @@
+@value variables: "../../assets/css/variables.css";
+@value --songImgWidth, --gray, --songImgHeight from variables;
+
+.list li {
+  border-bottom: 1px solid --gray;
+  padding: 10px 0;
+}
+
+.list li:last-of-type {
+  border-bottom: 0;
+}
+
+.songName {
+  font-size: 14px;
+  font-weight: 700;
+  line-height: 16px;
+  margin-bottom: 3px;
+}
+
+.songDesc {
+  font-size: 11px;
+  line-height: 14px;
+}
+
+.songImgWrapper {
+  float: left;
+  width: --songImgWidth;
+}
+
+.songText {
+  box-sizing: border-box;
+  float: left;
+  height: --songImgHeight;
+  overflow: hidden;
+  padding-left: 10px;
+  width: calc(100% - --songImgWidth);
+}
+
+.noResults {
+  text-align: center;
+  margin-top: 20px;
+}

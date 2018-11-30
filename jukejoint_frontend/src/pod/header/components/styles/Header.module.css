@@ -1,0 +1,30 @@
+.header {
+  box-sizing: border-box;
+  height: --headerHeight;
+  left: 0;
+  padding: 10px 15px;
+  position: fixed;
+  top: 0;
+  width: 100%;
+}
+
+.logo {
+  font-size: 40px;
+  margin-bottom: 5px;
+}
+
+.logoImg {
+  width: 42px;
+  position: relative;
+  top: 4px;
+}
+
+.h2ico {
+  border-radius: 50%;
+  border: 1px solid;
+  cursor: pointer;
+  float: right;
+  padding: 5px;
+  position: relative;
+  top: 12px;
+}
