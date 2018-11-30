@@ -156,6 +156,7 @@ export default class Player {
 
   public getPlayerState = () => {
     const playerState:IPlayer = {
+      isPlaying: this.isPlaying,
       volume: 50,
       currentSong: this.getCurrentSong(),
       queue: this.queue,
