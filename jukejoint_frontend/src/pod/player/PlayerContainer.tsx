@@ -7,10 +7,9 @@ import React, { Component } from 'react';
 // Interfaces
 // Components
 // Styles
-import styles from './footer.module.css';
+import styles from './PlayerContainer.module.css';
 import stylesHelpers from '../../assets/css/helpers.module.css'
-import PlayerVolume from './PlayerVolume';
-import PlayerDuration from './PlayerDuration';
+import { PlayerVolume, PlayerDuration } from './components/index';
 import { ReactComponent as IcoPlay } from '../../assets/img/ico/ico-play.svg';
 import { ReactComponent as IcoPause } from '../../assets/img/ico/ico-pause.svg';
 
@@ -18,7 +17,7 @@ interface IState {
   isPlaying: boolean;
 }
 
-class PlayerFooter extends Component<any, IState> {
+class PlayerContainer extends Component<any, IState> {
 
   constructor(props: any) {
     super(props);
@@ -46,10 +45,10 @@ class PlayerFooter extends Component<any, IState> {
         <div className={styles.songInfo}>
           Streetlight Manifesto - Everything Goes Numb
         </div>
-        <PlayerVolume/>
-        <PlayerDuration/>
+        <PlayerVolume />
+        <PlayerDuration />
       </div>
     );
   }
 }
-export default PlayerFooter;
+export default PlayerContainer;

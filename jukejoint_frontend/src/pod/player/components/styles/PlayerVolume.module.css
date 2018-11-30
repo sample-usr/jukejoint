@@ -1,12 +1,12 @@
-@value variables: "../../assets/css/variables.css";
+@value variables: "../../../../assets/css/variables.css";
 @value --footerHeight, --gray from variables;
 
 .ico {
-  composes: ico from "../footer/footer.module.css";
+  composes: ico from "../../PlayerContainer.module.css";
 }
 
 .volIco {
-  composes: playPauseBtn from "../footer/footer.module.css";
+  composes: playPauseBtn from "../../PlayerContainer.module.css";
 }
 
 .wrapper {
