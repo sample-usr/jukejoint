@@ -4,10 +4,10 @@ const loudness = require('loudness');
 import * as ffmpeg from 'fluent-ffmpeg';
 
 // Utils
-import { logger } from '@jukejoint/common/lib/toolkit/util';
+import { logger } from '@jukejoint/common/lib/util/general';
 // Constants
 // Models
-import SongModel from '@jukejoint/common/lib/models/SongModel';
+import { SongModel } from '@jukejoint/common/lib/models';
 import Provider from '../providers/Provider';
 // Interfaces
 

@@ -1,15 +1,13 @@
-import sh
 from sh import git
+import subprocess
 import time
-import os, sys
+import os
 
 
 def CheckForUpdate(workingDir):
     print("Fetching most recent code from source..." + workingDir)
 
     # Fetch most up to date version of code.
-    # p = git("--git-dir=" + workingDir + ".git/", "--work-tree=" + workingDir, "fetch", "origin", "master",
-    #         _out=ProcessFetch, _out_bufsize=0, _tty_in=True)
     p = git("--git-dir=" + workingDir + ".git/", "--work-tree=" + workingDir, "fetch", "origin", "master")
 
     print("Fetch complete.")
@@ -26,30 +24,23 @@ def CheckForUpdate(workingDir):
         return True
 
 
-# def ProcessFetch(char, stdin):
-#     global aggregated
-#
-#     sys.stdout.flush()
-#     aggregated += char
-#     if aggregated.endswith("Password for 'https://yourrepo@bitbucket.org':"):
-#         print(mainLogger, "Entering password...", True)
-#         stdin.put("yourpassword\n")
-
-
 if __name__ == "__main__":
-    checkTimeSec = 2
+
+    checkTimeSec = 5
     gitDir = os.path.dirname(os.path.realpath(__file__)) + "/../"
-    print(gitDir)
+
     while True:
         print("*********** Checking for code update **************")
 
         if CheckForUpdate(gitDir):
-            # stop running services
-
             # pull changes
             pullChanges = git("--git-dir=" + gitDir + ".git/", "--work-tree=" + gitDir, "pull")
             print("changes pulled")
+            # build
+            p = subprocess.call("yarn --cwd jukejoint_streamer/ build", shell=True)
+            p = subprocess.call("yarn --cwd jukejoint_frontend/ build", shell=True)
             # restart services
+            p = subprocess.call("sudo systemctl restart shittydj.service", shell=True)
 
-        print("Check complete. Waiting for " + str(checkTimeSec) + "seconds until next check...", True)
+        print("Check complete. Waiting for " + str(checkTimeSec) + "seconds until next check...")
         time.sleep(checkTimeSec)
