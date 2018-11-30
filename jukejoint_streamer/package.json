@@ -11,6 +11,7 @@
   "license": "ISC",
   "dependencies": {
     "@jukejoint/common": "^1.0.0",
+    "@koa/cors": "2",
     "co-body": "^6.0.0",
     "fluent-ffmpeg": "^2.1.2",
     "koa": "^2.6.2",

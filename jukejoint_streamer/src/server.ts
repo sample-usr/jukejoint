@@ -1,4 +1,6 @@
 const koa = require('koa');
+const cors = require('@koa/cors');
+
 import * as router from 'koa-router';
 const websockify = require('koa-websocket');
 import { websocketInstance } from './services/WebsocketService';
@@ -8,7 +10,9 @@ const ws 	 = new router();
 const http = new router();
 
 websockify(app);
-
+const koaOptions = {
+	origin: '*',
+};
 // const PlayerController = require('./controller/PlayerController');
 import { PlayerController } from './controller';
 
@@ -25,6 +29,7 @@ http.get('/increase_volume', PlayerController.increaseVolume)
 http.get('/decrease_volume', PlayerController.decreaseVolume)
 
 // app.use(bodyParser());
+app.use(cors(koaOptions));
 app.use(http.routes()).use(http.allowedMethods());
 app.ws.use(ws.routes()).use(ws.allowedMethods());
 
