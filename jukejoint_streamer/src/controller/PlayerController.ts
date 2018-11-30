@@ -1,43 +1,40 @@
 import Provider from '../providers/Provider';
 import Player from '../player/Player';
-
-import { IPlayerState } from '@jukejoint/common/lib/interfaces'
-
 import { websocketInstance } from '../services/WebsocketService';
-
+const parser = require('co-body');
 const player = Player.getInstance();
 
-const tempIPlayer: IPlayerState = {
-  volume: 0,
-  currentSongId: "asdf",
-  playlist: null
-}
 
-export async function addSong(ctx: any) {
-  const newSong = await Provider.getSongInfo(ctx.body.songURL, ctx.body.providerType);
+export async function addSong(ctx:any) {
+  // console.log(ctx.request.body);
+  const request = await parser.json(ctx);
+
+  console.log(request);
+  const newSong = await Provider.getSongInfo(request.songURL, request.providerType);
   if (player.add(newSong)) {
-    // Redirect
+    websocketInstance.sendMsg(player.getPlayerState())
+    ctx.body = 200;
   } else {
-    ctx.body(JSON.stringify('Song already in list'))
+    ctx.body = JSON.stringify('Song already in list');
   }
 }
 
-export async function pauseSong(ctx: any) {
-  // await player.pause();
-  console.log('in pause');
-  websocketInstance.sendMsg(tempIPlayer);
+export async function pauseSong(ctx:any) {
+  await player.pause();
+  websocketInstance.sendMsg(player.getPlayerState());
   ctx.status = 200;
 }
 
 export async function playSong(ctx: any) {
   await player.play();
+  websocketInstance.sendMsg(player.getPlayerState());
   ctx.status = 200;
 }
 
 export async function getCurrentSong(ctx: any) {
   const currentSong = player.getCurrentSong();
   if (currentSong) {
-    // send PlayerObject on WS
+    websocketInstance.sendMsg(player.getPlayerState());
   } else {
     ctx.status = 204;
   }
@@ -45,10 +42,12 @@ export async function getCurrentSong(ctx: any) {
 
 export async function increaseVolume(ctx: any) {
   player.increaseVolume();
+  websocketInstance.sendMsg(player.getPlayerState());
   ctx.status = 200;
 }
 
 export async function decreaseVolume(ctx: any) {
   player.decreaseVolume();
+  websocketInstance.sendMsg(player.getPlayerState());
   ctx.status = 200;
 }

@@ -11,10 +11,11 @@ import { IProvider } from '@jukejoint/common/lib/interfaces';
 export default class Provider {
 
   static getProviderByType = (type:PROVIDERS):IProvider => {
+    console.log(type);
     switch (type) {
       case PROVIDERS.YOUTUBE:
         return YoutubeProvider.getInstance();
-      case PROVIDERS.YOUTUBE:
+      case PROVIDERS.BANDCAMP:
         return BandcampProvider.getInstance();
       default:
         return null;
@@ -24,6 +25,7 @@ export default class Provider {
   static getSongInfo = async (url:string, type:PROVIDERS): Promise<SongModel> => {
     //TODO: put try catch
     const provider = Provider.getProviderByType(type);
+    console.log(provider);
     const songInfo = await provider.getSongInfo(url);
 
     return SongModel.buildFromProvider(songInfo, type, url);

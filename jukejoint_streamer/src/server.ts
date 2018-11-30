@@ -1,7 +1,6 @@
 const koa = require('koa');
 import * as router from 'koa-router';
 const websockify = require('koa-websocket');
-const bodyParser = require('koa-bodyparser');
 import { websocketInstance } from './services/WebsocketService';
 
 const app  = new koa();
