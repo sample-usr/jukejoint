@@ -1,4 +1,3 @@
-import { IPlayer } from '@jukejoint/common/lib/interfaces';
 class Socket {
   // External Dependencies
   private socketUrl?: string;
