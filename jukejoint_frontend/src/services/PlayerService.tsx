@@ -25,8 +25,24 @@ export class PlayerService {
         return res;
     }
 
+    play = async () => {
+      const res = await apiRequest(this.api + '/play', API_METHOD_TYPE.GET);
+        
+      console.log('play request:', res);
+        
+      return res;
+    }
+
+    pause = async () => {
+      const res = await apiRequest(this.api + '/pause', API_METHOD_TYPE.GET);
+        
+      console.log('pause request:', res);
+        
+      return res;
+    }
+
     increaseVolume = async () => {
-      const res = await apiRequest(this.api + '/increaseVol');
+      const res = await apiRequest(this.api + '/increaseVol', API_METHOD_TYPE.GET);
         
       console.log('increaseVol request:', res);
         
@@ -34,7 +50,7 @@ export class PlayerService {
     };
 
     decreaseVolume = async () => {
-      const res = await apiRequest(this.api + '/decreaseVol');
+      const res = await apiRequest(this.api + '/decreaseVol', API_METHOD_TYPE.GET);
         
       console.log('decreaseVol request:', res);
         
@@ -42,7 +58,7 @@ export class PlayerService {
     }
 
     getCurrentSong = async () => {
-      const res = await apiRequest(this.api + '/getCurrentSong');
+      const res = await apiRequest(this.api + '/getCurrentSong', API_METHOD_TYPE.GET);
 
       console.log('getCurrentSong request:', res);
 
