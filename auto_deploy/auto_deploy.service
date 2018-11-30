@@ -1,0 +1,15 @@
+[Unit]
+Description=shitty DJ auto deploy service
+Wants=network-online.target
+After=network-online.target
+
+[Service]
+Type=idle
+User=pi
+EnvironmentFile=/home/pi/.env
+ExecStart=/usr/bin/python /home/pi/jukejoint/auto_deploy/auto_deploy.py
+Restart=always
+StartLimitBurst=0
+
+[Install]
+WantedBy=multi-user.target
