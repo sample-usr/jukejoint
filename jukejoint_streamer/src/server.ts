@@ -19,6 +19,11 @@ ws.get('/register', async (ctx: router.IRouterContext) => {
 });
 
 http.post('/add_song', PlayerController.addSong)
+http.get('/pause_song', PlayerController.pauseSong)
+http.get('/play', PlayerController.playSong)
+http.get('/get_current_song', PlayerController.getCurrentSong)
+http.get('/increase_volume', PlayerController.increaseVolume)
+http.get('/decrease_volume', PlayerController.decreaseVolume)
 
 // app.use(bodyParser());
 app.use(http.routes()).use(http.allowedMethods());
