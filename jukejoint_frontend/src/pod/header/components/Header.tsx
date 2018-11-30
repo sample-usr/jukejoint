@@ -3,7 +3,7 @@ import styles from './styles/Header.module.css';
 import stylesHelpers from '../../../assets/css/helpers.module.css'
 import Logo from '../../../assets/img/logo-gray.png';
 
-class HeaderComponent extends Component<any, any> {
+class HeaderComponent extends Component {
 
   public render() {
     return (
