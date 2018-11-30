@@ -1,4 +1,5 @@
 import { PROVIDERS } from "../util/const";
+import { PlaylistModel, SongModel } from '../models';
 
 interface ISong {
   id: string;
@@ -10,9 +11,9 @@ interface ISong {
 }
 
 interface IPlayerState {
-  volume: number;
-  currentSongId: string;
-  playlist: Record<string, ISong>;
+  volume:number;
+  currentSong:SongModel;
+  queue:SongModel[];
 }
 
 export default IPlayerState;

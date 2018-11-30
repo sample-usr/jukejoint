@@ -10,6 +10,7 @@ import { logger } from '@jukejoint/common/lib/util/general';
 import { SongModel } from '@jukejoint/common/lib/models';
 import Provider from '../providers/Provider';
 // Interfaces
+import { IPlayer } from '@jukejoint/common/lib/interfaces';
 
 export default class Player {
   private constructor() {}
@@ -151,5 +152,15 @@ export default class Player {
 
   public removeSong = (id:number) => {
     this.queue = this.queue.splice(id, 1);
+  }
+
+  public getPlayerState = () => {
+    const playerState:IPlayer = {
+      volume: 50,
+      currentSong: this.getCurrentSong(),
+      queue: this.queue,
+    }
+
+    return playerState;
   }
 }
