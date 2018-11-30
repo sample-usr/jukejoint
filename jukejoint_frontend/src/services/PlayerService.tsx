@@ -18,14 +18,6 @@ export class PlayerService {
       return PlayerService.instance;
     }
 
-    hello = async () => {
-        const res = await apiRequest(this.api + '/hello');
-        
-        console.log('hello request:', res);
-        
-        return res;
-    }
-
     queueSong = async (songURL: string, providerType: PROVIDERS) => {
       const res = await apiRequest(this.api + '/add_song', API_METHOD_TYPE.POST, { songURL, providerType });
         
