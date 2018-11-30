@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
-import { BrowserRouter as Router, Route, Link } from 'react-router-dom';
+import { BrowserRouter as Router, Route } from 'react-router-dom';
+import socket from './services/WebsocketService';
 
 import './assets/css/reset.css';
 import './assets/css/base.css';
@@ -15,6 +16,11 @@ import {
   PlaylistRouter,
 } from './routes';
 // Styles
+
+
+const socketURL = process.env.NODE_ENV === 'development' ? 'ws://localhost:4004/register' : 'ws://shittydj.mantro.services';
+socket.setDependencies(socketURL);
+socket.open();
 
 class App extends Component {
   render() {

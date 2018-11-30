@@ -25,13 +25,13 @@ export async function pauseSong(ctx:any) {
   ctx.status = 200;
 }
 
-export async function playSong(ctx:any) {
+export async function playSong(ctx: any) {
   await player.play();
   websocketInstance.sendMsg(player.getPlayerState());
   ctx.status = 200;
 }
 
-export async function getCurrentSong(ctx:any) {
+export async function getCurrentSong(ctx: any) {
   const currentSong = player.getCurrentSong();
   if (currentSong) {
     websocketInstance.sendMsg(player.getPlayerState());
@@ -40,13 +40,13 @@ export async function getCurrentSong(ctx:any) {
   }
 }
 
-export async function increaseVolume(ctx:any) {
+export async function increaseVolume(ctx: any) {
   player.increaseVolume();
   websocketInstance.sendMsg(player.getPlayerState());
   ctx.status = 200;
 }
 
-export async function decreaseVolume(ctx:any) {
+export async function decreaseVolume(ctx: any) {
   player.decreaseVolume();
   websocketInstance.sendMsg(player.getPlayerState());
   ctx.status = 200;

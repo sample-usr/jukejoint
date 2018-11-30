@@ -7,12 +7,14 @@ import { ReactComponent as IcoVolume } from '../../../assets/img/ico/ico-volume.
 import { ReactComponent as IcoVolumeUp } from '../../../assets/img/ico/ico-volume-up.svg';
 import { ReactComponent as IcoVolumeDown } from '../../../assets/img/ico/ico-volume-down.svg';
 
+import { PlayerService } from '../../../services/PlayerService';
+
 type State = {
-  isVisible:boolean;
+  isVisible: boolean;
 }
 
 class VolumeControl extends Component<{}, State> {
-  readonly state:State = {
+  readonly state: State = {
     isVisible: false
   }
 
@@ -33,9 +35,11 @@ class VolumeControl extends Component<{}, State> {
 
 
   private volumeUp = () => {
+    PlayerService.getInstance().increaseVolume();
     console.log('Volume Up');
   }
   private volumeDown = () => {
+    PlayerService.getInstance().decreaseVolume();
     console.log('Volume Down');
   }
 

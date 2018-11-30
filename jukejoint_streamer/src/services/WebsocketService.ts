@@ -1,5 +1,5 @@
 import * as router from 'koa-router';
-import IPlayerState from '../../../jukejoint_common/src/interfaces/IPlayer';
+import IPlayerState from '../../../jukejoint_common/src/interfaces/IPlayerState';
 
 export default class WebsocketService {
 

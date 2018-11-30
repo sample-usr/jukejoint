@@ -1,6 +1,7 @@
 import axios from 'axios';
 import { apiRequest } from '../toolkit/util/api';
 import { API_METHOD_TYPE } from '../toolkit/const/api';
+import { PROVIDERS } from '../../../jukejoint_common/src/util/const';
 
 export class PlayerService {
     private static instance:PlayerService;
@@ -23,6 +24,14 @@ export class PlayerService {
         console.log('hello request:', res);
         
         return res;
+    }
+
+    queueSong = async (songURL: string, providerType: PROVIDERS) => {
+      const res = await apiRequest(this.api + '/queueSong', API_METHOD_TYPE.POST, { songURL, providerType });
+        
+      console.log('queueSong request:', res);
+        
+      return res;
     }
 
     play = async () => {
