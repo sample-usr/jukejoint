@@ -13,7 +13,7 @@ export async function addSong(ctx:any) {
   const newSong = await Provider.getSongInfo(request.songURL, request.providerType);
   if (player.add(newSong)) {
     websocketInstance.sendMsg(player.getPlayerState())
-    ctx.body = 200;
+    ctx.status = 200;
   } else {
     ctx.body = JSON.stringify('Song already in list');
   }
