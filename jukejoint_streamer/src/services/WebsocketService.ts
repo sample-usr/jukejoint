@@ -11,13 +11,14 @@ export default class WebsocketService {
   }
 
   public sendMsg(state: IPlayerState) {
+    const msg = JSON.stringify(state);
 
-    this.connections = this.connections.filter((connection) => connection.websocket.OPEN === connection.websocket.readyState);
-
-    this.connections.forEach((connection) => {
-
-      connection.websocket.send(JSON.stringify(state));
-    })
+    this.connections = this.connections
+      .filter((ctx) => ctx.websocket.OPEN === ctx.websocket.readyState)
+      .map((ctx) => {
+        ctx.websocket.send(msg);
+        return ctx;
+      });
   }
 }
 
