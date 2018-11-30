@@ -13,11 +13,6 @@ websockify(app);
 // const PlayerController = require('./controller/PlayerController');
 import { PlayerController } from './controller';
 
-ws.get('/ping', async (ctx:any) => {
-	ctx.websocket.on('message', (message:any) => {
-		console.log(message);
-		ctx.websocket.send("asdf" + message);
-	})
 ws.get('/register', async (ctx: router.IRouterContext) => {
 
 	websocketInstance.register(ctx);
@@ -25,7 +20,7 @@ ws.get('/register', async (ctx: router.IRouterContext) => {
 
 http.post('/add_song', PlayerController.addSong)
 
-app.use(bodyParser());
+// app.use(bodyParser());
 app.use(http.routes()).use(http.allowedMethods());
 app.ws.use(ws.routes()).use(ws.allowedMethods());
 

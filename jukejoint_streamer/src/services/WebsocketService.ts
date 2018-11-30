@@ -3,10 +3,9 @@ import IPlayerState from '../../../jukejoint_common/src/interfaces/IPlayer';
 
 export default class WebsocketService {
 
-  private connections: router.IRouterContext[];
+  private connections: router.IRouterContext[] = [];
 
   public register(ws: router.IRouterContext) {
-
     this.connections.push(ws);
   }
 
