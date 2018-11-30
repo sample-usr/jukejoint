@@ -1,9 +1,9 @@
 import IProvider from './IProvider';
 import { ProvidersDTOType } from './ProviderTypes';
-import IPlayer from './IPlayer';
+import IPlayerState from './IPlayerState';
 
 export {
   IProvider,
   ProvidersDTOType,
-  IPlayer,
+  IPlayerState,
 }

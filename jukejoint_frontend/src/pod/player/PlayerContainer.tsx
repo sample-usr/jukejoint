@@ -12,6 +12,7 @@ import stylesHelpers from '../../assets/css/helpers.module.css'
 import { PlayerVolume, PlayerDuration } from './components/index';
 import { ReactComponent as IcoPlay } from '../../assets/img/ico/ico-play.svg';
 import { ReactComponent as IcoPause } from '../../assets/img/ico/ico-pause.svg';
+import { PlayerService } from '../../services/PlayerService';
 
 interface IState {
   isPlaying: boolean;
@@ -28,9 +29,16 @@ class PlayerContainer extends Component<any, IState> {
 
   private togglePlayPause = () => {
     const { isPlaying } = this.state;
+    if (isPlaying) {
+      PlayerService.getInstance().pause();
+    } else {
+      PlayerService.getInstance().play();
+    }
 
     this.setState({
       isPlaying: !isPlaying
+    }, () => {
+
     });
   }
 
