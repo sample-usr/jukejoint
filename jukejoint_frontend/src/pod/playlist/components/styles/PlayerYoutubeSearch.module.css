@@ -1,0 +1,7 @@
+.inputBtn {
+    composes: inputBtn from "./PlaylistAddLink.module.css";
+}
+
+.btn {
+    composes: btn from "./PlaylistAddLink.module.css";
+}

@@ -11,8 +11,7 @@ import { Header } from '../pod/header/components';
 // Styles
 import styles from '../App.module.css';
 import stylesHelpers from '../assets/css/helpers.module.css';
-import queueStyles from '../pod/playlist/components/styles/PlaylistQueue.module.css';
-import QueueComponent from '../pod/playlist/components/PlaylistQueue'
+
 import PlayerContainer from '../pod/player/PlayerContainer';
 import PlaylistContainer from '../pod/playlist/PlaylistContainer';
 

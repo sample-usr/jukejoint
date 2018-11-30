@@ -1,0 +1,35 @@
+@value variables: "../../assets/css/variables.css";
+@value --gray from variables;
+
+.addSongModal {
+    background: --gray;
+    bottom: 0;
+    box-sizing: border-box;
+    height: 100%;
+    opacity: 0;
+    padding: 15px;
+    position: fixed;
+    left: 0;
+    top: 0;
+    visibility: hidden;
+    width: 100%;
+    z-index: 300;
+    transition: opacity 0.5s, visibility 0s 0.5s;
+    overflow: auto;
+}
+
+.visible {
+    transition: opacity 0.5s !important;
+    visibility: visible !important;
+    opacity: 1 !important;
+}
+
+.h2ico {
+    border-radius: 50%;
+    border: 1px solid;
+    cursor: pointer;
+    float: right;
+    padding: 5px;
+    position: relative;
+    top: 12px;
+}

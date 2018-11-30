@@ -18,13 +18,3 @@
   position: relative;
   top: 4px;
 }
-
-.h2ico {
-  border-radius: 50%;
-  border: 1px solid;
-  cursor: pointer;
-  float: right;
-  padding: 5px;
-  position: relative;
-  top: 12px;
-}
