@@ -1,7 +1,12 @@
-import { PROVIDERS } from '../toolkit/const';
+// Utils
+// Constants
+import { PROVIDERS } from '@jukejoint/common/lib/util/const';
 import { YoutubeProvider, BandcampProvider } from '../providers';
-import SongModel from '../models/SongModel';
-import { IProvider } from '../interfaces';
+// Actions
+// Models
+import { SongModel } from '@jukejoint/common/lib/models';
+// Interfaces
+import { IProvider } from '@jukejoint/common/lib/interfaces';
 
 export default class Provider {
 
@@ -17,13 +22,15 @@ export default class Provider {
   }
 
   static getSongInfo = async (url:string, type:PROVIDERS): Promise<SongModel> => {
+    //TODO: put try catch
     const provider = Provider.getProviderByType(type);
     const songInfo = await provider.getSongInfo(url);
 
-    return SongModel.mapProviderInfos(songInfo, type, url);
+    return SongModel.buildFromProvider(songInfo, type, url);
   }
 
   static getSongStream = async (url:string, type:PROVIDERS): Promise<SongModel> => {
+    //TODO: put try catch
     const provider = Provider.getProviderByType(type);
     const songStream = await provider.getSongStream(url);
 

@@ -1,4 +1,8 @@
 import * as fs from 'fs';
+import { JsonConvert, ValueCheckingMode } from 'json2typescript';
+
+export const jsonConvert = new JsonConvert();
+jsonConvert.valueCheckingMode = ValueCheckingMode.ALLOW_NULL;
 
 export const logger = (val:any) => {
   console.log(val);

@@ -1,9 +1,15 @@
 import * as bandcamp from 'node-bandcamp';
-import BandcampResponse from '../../models/dto/bandcampResponse';
-import { IProvider } from '../../interfaces';
+
+// Utils
+import { jsonConvert } from '@jukejoint/common/lib/util/general';
+// Constants
+// Actions
+// Models
+import { BandcampDTO } from '@jukejoint/common/lib/models';
+// Interfaces
+import { IProvider } from '@jukejoint/common/lib/interfaces'
 
 export default class BandcampProvider implements IProvider {
-
   private constructor() {};
   private static instance:BandcampProvider;
 
@@ -15,12 +21,14 @@ export default class BandcampProvider implements IProvider {
   }
 
   public getSongStream = async (url: string) => {
+    //TODO: put try catch
     return await bandcamp.getTrack(url);
   }
 
-  public getSongInfo = async (url: string): Promise<BandcampResponse> => {
+  public getSongInfo = async (url: string): Promise<BandcampDTO> => {
+    //TODO: put try catch
     const infos = await bandcamp.getDetails(url);
-    return new BandcampResponse(infos);
+    return jsonConvert.deserialize(infos, BandcampDTO);
   }
 
   public isValidURL = async (url:string) => {

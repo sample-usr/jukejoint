@@ -1,6 +1,13 @@
 import * as ytdl from 'ytdl-core';
-import YoutubeResponse from '../../models/dto/youtubeResponse';
-import { IProvider } from '../../interfaces';
+
+// Utils
+import { jsonConvert } from '@jukejoint/common/lib/util/general';
+// Constants
+// Actions
+// Models
+import { YoutubeDTO } from '@jukejoint/common/lib/models';
+// Interfaces
+import { IProvider } from '@jukejoint/common/lib/interfaces'
 
 export default class YoutubeProvider implements IProvider {
 
@@ -15,12 +22,14 @@ export default class YoutubeProvider implements IProvider {
   }
 
   public getSongStream = async (url:string) => {
+    //TODO: put try catch
     return ytdl(url, { filter: 'audioonly', quality: 'highestaudio' });
   }
 
-  public getSongInfo  = async (url: string): Promise<YoutubeResponse> => {
+  public getSongInfo  = async (url: string): Promise<YoutubeDTO> => {
+    //TODO: put try catch
     const infos = await ytdl.getInfo(url);
-    return new YoutubeResponse(infos);
+    return jsonConvert.deserialize(infos, YoutubeDTO);
   }
 
   public isValidURL = async (url:string) => {
