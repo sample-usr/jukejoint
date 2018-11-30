@@ -3,6 +3,7 @@ import styles from './styles/PlayerYoutubeSearch.module.css';
 import stylesHelpers from '../../../assets/css/helpers.module.css'
 import { PlaylistQueue } from './';
 import PlaylistQueueStyles from './styles/PlaylistQueue.module.css';
+import { PlayerService } from '../../../services/PlayerService';
 
 interface IState {
   searchText: string;
@@ -74,6 +75,10 @@ class PlaylistYoutubeSearch extends Component<IProps, IState> {
       });
   }
 
+  public addSongToPlaylist = (songId: string) => {
+    PlayerService.getInstance().queueSong(`https://www.youtube.com/watch?v=${songId}`);
+  }
+
   public render() {
     const { searchText, searchRes } = this.state;
 
@@ -105,6 +110,7 @@ class PlaylistYoutubeSearch extends Component<IProps, IState> {
               id={item.id.videoId}
               img={item.snippet.thumbnails.default.url}
               title={item.snippet.title}
+              onClick={this.addSongToPlaylist}
             />
           )}
         </ul>

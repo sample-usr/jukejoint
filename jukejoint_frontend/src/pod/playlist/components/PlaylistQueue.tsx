@@ -1,20 +1,29 @@
 import React, { Component } from 'react';
 import styles from './styles/PlaylistQueue.module.css';
 import stylesHelpers from '../../../assets/css/helpers.module.css'
+import { throws } from 'assert';
 
 interface IProps {
   description?: string;
   id: string;
   img: string;
   title: string;
+  onClick?: (songId: string) => void;
 }
 
 class PlaylistQueue extends Component<IProps, any> {
+
+  private onClick = () => {
+    if (this.props.onClick) {
+      this.props.onClick(this.props.id);
+    }
+  }
+
   public render() {
-    const { description, id, img, title } = this.props;
+    const { description, img, title } = this.props;
 
     return (
-      <li>
+      <li onClick={this.onClick}>
         <div className={stylesHelpers.clearfix}>
           <div className={styles.songImgWrapper}>
             <img src={img} />

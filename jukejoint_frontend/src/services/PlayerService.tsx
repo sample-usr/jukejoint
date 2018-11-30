@@ -26,8 +26,8 @@ export class PlayerService {
         return res;
     }
 
-    queueSong = async (songURL: string, providerType: PROVIDERS) => {
-      const res = await apiRequest(this.api + '/add_song', API_METHOD_TYPE.POST, { songURL, providerType });
+    queueSong = async (songURL: string) => {
+      const res = await apiRequest(this.api + '/add_song', API_METHOD_TYPE.POST, { songURL });
         
       console.log('queueSong request:', res);
         

@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import styles from './styles/PlaylistAddLink.module.css';
 import stylesHelpers from '../../../assets/css/helpers.module.css'
+import { PlayerService } from '../../../services/PlayerService';
 
 interface IState {
   addSongText: string;
@@ -27,6 +28,10 @@ class PlaylistAddLink extends Component<IProps, IState> {
 
   private submiFormAddSong = (e: React.FormEvent) => {
     e.preventDefault();
+    const { addSongText } = this.state;
+
+    PlayerService.getInstance().queueSong(addSongText);
+
     this.props.toggleAddSongModal();
   }
 
