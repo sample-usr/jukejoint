@@ -9,7 +9,6 @@ import React, { Component } from 'react';
 // Components
 import { Header } from '../pod/header/components';
 // Styles
-import styles from '../App.module.css';
 import stylesHelpers from '../assets/css/helpers.module.css';
 
 import PlayerContainer from '../pod/player/PlayerContainer';
@@ -21,7 +20,7 @@ export default class HomeRouter extends Component<{}, {}> {
       <div className={stylesHelpers.fullHeight}>
         <Header toggleAddSongModal={() => console.log('nooop')} />
 
-        <div className={`${styles.wrapper} ${stylesHelpers.maxWidth1000} ${stylesHelpers.margin0auto}`}>
+        <div className={`${stylesHelpers.wrapper} ${stylesHelpers.maxWidth1000} ${stylesHelpers.margin0auto}`}>
           <PlaylistContainer />
         </div>
 

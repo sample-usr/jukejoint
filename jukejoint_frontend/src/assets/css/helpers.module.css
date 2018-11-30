@@ -1,3 +1,6 @@
+@value variables: "./variables.css";
+@value --gray, --headerHeight, --footerHeight from variables;
+
 .font400 {font-weight: 400;}
 .font700 {font-weight: 700;}
 
@@ -17,3 +20,12 @@
 }
 .floatLeft {float: left;}
 .floatRight {float: right;}
+
+.wrapper {
+  height: calc(100% - --headerHeight + --footerHeight);
+  position: relative;
+  top: --headerHeight;
+  overflow: auto;
+  padding: 15px 15px 10px;
+  box-sizing: border-box;
+}
