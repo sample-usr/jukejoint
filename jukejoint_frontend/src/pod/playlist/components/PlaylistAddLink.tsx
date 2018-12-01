@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import styles from './styles/PlaylistAddLink.module.css';
 import stylesHelpers from '../../../assets/css/helpers.module.css'
 import { PlayerService } from '../../../services/PlayerService';
+import { PROVIDERS } from '@jukejoint/common/lib/util/const';
 
 interface IState {
   addSongText: string;
@@ -30,7 +31,10 @@ class PlaylistAddLink extends Component<IProps, IState> {
     e.preventDefault();
     const { addSongText } = this.state;
 
-    PlayerService.getInstance().queueSong(addSongText);
+    // TODO: better provider inferring
+    const providerType = addSongText.includes('youtube') ? PROVIDERS.YOUTUBE : PROVIDERS.BANDCAMP;
+
+    PlayerService.getInstance().queueSong(addSongText, providerType);
 
     this.props.toggleAddSongModal();
   }
