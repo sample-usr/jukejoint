@@ -33,7 +33,9 @@ export default class Player {
   public queue:SongModel[] = [];
 
   private closeStream = () => {
-    this.stream.unpipe(this.speaker);
+    if (this.stream){
+      this.stream.unpipe(this.speaker);
+    } 
 
     // Hack to avoid speaker audio ring buffer error
     setTimeout(() => this.speaker.close(), this.SPEAKER_CLOSE_WAIT);
