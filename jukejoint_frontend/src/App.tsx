@@ -27,7 +27,7 @@ class App extends Component {
     return (
       <Router>
         <div>
-          <Route exact path="/" component={HomeRouter} />
+          <Route exact path="/" component={HomeRouter} /* inject socket.playerState ?*//>
           <Route exact path="/playlist" component={PlaylistRouter} />
         </div>
       </Router>

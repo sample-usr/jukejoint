@@ -9,14 +9,26 @@ import styles from './PlaylistContainer.module.css';
 
 interface IState {
     addSongModalVisible: boolean;
+    playlist: { 
+        description?: string,
+        id: string,
+        img: string,
+        title: string
+    }[]
 }
 
 class PlaylistContainer extends React.Component<any, IState>{
-
+    
     constructor(props: any) {
         super(props);
         this.state = {
-            addSongModalVisible: false
+            addSongModalVisible: false,
+            playlist: [{
+                id: "asd",
+                title: 'test title',
+                description: 'Description??',
+                img: TestImg
+            }]
         };
     }
 
@@ -39,12 +51,7 @@ class PlaylistContainer extends React.Component<any, IState>{
                 </div>
 
                 <ul className={queueStyles.list}>
-                    <PlaylistQueue
-                        id="asd"
-                        title="test title"
-                        description="Description??"
-                        img={TestImg}
-                    />
+                    {this.state.playlist && this.state.playlist.map((song: any) => <PlaylistQueue id={song.id} title={song.title} description={song.description} img={song.img} />)}
                 </ul>
 
                 <div className={`${styles.addSongModal} ${stylesHelpers.clearfix} ${addSongModalVisible ? styles.visible : ''}`}>
