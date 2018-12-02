@@ -17,42 +17,42 @@ export class PlayerService {
     }
 
     queueSong = async (songURL: string) => {
-      const res = await apiRequest(this.api + '/add_song', API_METHOD_TYPE.POST, { songURL });
+      const res = await apiRequest(this.api + '/add_song', API_METHOD_TYPE.POST, { songURL, providerType: 'youtube' });
 
       console.log('queueSong request:', res);
-        
+
       return res;
     }
 
     play = async () => {
       const res = await apiRequest(this.api + '/play', API_METHOD_TYPE.GET);
-        
+
       console.log('play request:', res);
-        
+
       return res;
     }
 
     pause = async () => {
       const res = await apiRequest(this.api + '/pause_song', API_METHOD_TYPE.GET);
-        
+
       console.log('pause request:', res);
-        
+
       return res;
     }
 
     increaseVolume = async () => {
       const res = await apiRequest(this.api + '/increase_volume', API_METHOD_TYPE.GET);
-        
+
       console.log('increaseVol request:', res);
-        
+
       return res;
     };
 
     decreaseVolume = async () => {
       const res = await apiRequest(this.api + '/decrease_volume', API_METHOD_TYPE.GET);
-        
+
       console.log('decreaseVol request:', res);
-        
+
       return res;
     }
 

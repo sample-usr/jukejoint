@@ -1,6 +1,9 @@
 {
   "name": "jukejoint",
   "private": true,
+  "scripts": {
+		"start": "lerna run watch --parallel --stream"
+	},
   "workspaces": {
     "packages": [
       "./jukejoint_streamer",
