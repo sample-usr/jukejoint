@@ -1,3 +1,5 @@
+import { IPlayer } from '@jukejoint/common/lib/interfaces';
+
 class Socket {
   // External Dependencies
   private socketUrl?: string;
@@ -5,7 +7,7 @@ class Socket {
   private ws?: WebSocket;
   private onOpenCallbacks:  Array<() => any> = [];
   private keepAliveInterval: any;
-  public playerState = null;
+  public playerState: IPlayer|null = null;
 
 
   public setDependencies = (socketUrl: string) => {
@@ -49,7 +51,7 @@ class Socket {
 
     this.ws.onmessage = (e: any) => {
 
-      const msg = JSON.parse(e.data);
+      const msg: IPlayer = JSON.parse(e.data);
       this.playerState = msg;
       console.log(msg);
     };

@@ -1,5 +1,6 @@
 import { apiRequest } from '../toolkit/util/api';
 import { API_METHOD_TYPE } from '../toolkit/const/api';
+import { PROVIDERS } from '@jukejoint/common/lib/util/const';
 
 export class PlayerService {
     private static instance:PlayerService;
@@ -16,8 +17,8 @@ export class PlayerService {
       return PlayerService.instance;
     }
 
-    queueSong = async (songURL: string) => {
-      const res = await apiRequest(this.api + '/add_song', API_METHOD_TYPE.POST, { songURL, providerType: 'youtube' });
+    queueSong = async (songURL: string, providerType: PROVIDERS) => {
+      const res = await apiRequest(this.api + '/add_song', API_METHOD_TYPE.POST, { songURL, providerType });
 
       console.log('queueSong request:', res);
 

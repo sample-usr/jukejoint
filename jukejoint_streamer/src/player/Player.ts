@@ -33,7 +33,9 @@ export default class Player {
   public queue:SongModel[] = [];
 
   private closeStream = () => {
-    this.stream.unpipe(this.speaker);
+    if (this.stream){
+      this.stream.unpipe(this.speaker);
+    } 
 
     // Hack to avoid speaker audio ring buffer error
     setTimeout(() => this.speaker.close(), this.SPEAKER_CLOSE_WAIT);
@@ -156,6 +158,7 @@ export default class Player {
 
   public getPlayerState = () => {
     const playerState:IPlayer = {
+      isPlaying: this.isPlaying,
       volume: 50,
       currentSong: this.getCurrentSong(),
       queue: this.queue,

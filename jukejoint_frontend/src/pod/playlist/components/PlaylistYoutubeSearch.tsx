@@ -4,6 +4,7 @@ import stylesHelpers from '../../../assets/css/helpers.module.css'
 import { PlaylistQueue } from './';
 import PlaylistQueueStyles from './styles/PlaylistQueue.module.css';
 import { PlayerService } from '../../../services/PlayerService';
+import { PROVIDERS } from '@jukejoint/common/lib/util/const';
 
 interface IState {
   searchText: string;
@@ -76,7 +77,7 @@ class PlaylistYoutubeSearch extends Component<IProps, IState> {
   }
 
   public addSongToPlaylist = async (songId: string) => {
-    const res = await PlayerService.getInstance().queueSong(`https://www.youtube.com/watch?v=${songId}`);
+    const res = await PlayerService.getInstance().queueSong(`https://www.youtube.com/watch?v=${songId}`, PROVIDERS.YOUTUBE);
     console.log('res', res);
     if (res.status === 200) {
       this.props.toggleAddSongModal();
