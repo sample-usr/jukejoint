@@ -13,6 +13,7 @@ import { PlayerVolume, PlayerDuration } from './components/index';
 import { ReactComponent as IcoPlay } from '../../assets/img/ico/ico-play.svg';
 import { ReactComponent as IcoPause } from '../../assets/img/ico/ico-pause.svg';
 import { PlayerService } from '../../services/PlayerService';
+import { instance as SocketInstance } from '../../services/WebsocketService';
 
 interface IState {
   isPlaying: boolean;
@@ -26,7 +27,7 @@ class PlayerContainer extends Component<any, IState> {
       isPlaying: false
     };
   }
-
+  
   private togglePlayPause = () => {
     const { isPlaying } = this.state;
     if (isPlaying) {
@@ -43,6 +44,7 @@ class PlayerContainer extends Component<any, IState> {
   }
 
   public render() {
+    const currentSongTitle = (SocketInstance.playerState && SocketInstance.playerState.currentSong && SocketInstance.playerState.currentSong.title) ? SocketInstance.playerState.currentSong.title : '';
     const { isPlaying } = this.state;
 
     return (
@@ -51,7 +53,7 @@ class PlayerContainer extends Component<any, IState> {
           {isPlaying ? <IcoPause className={styles.ico} /> : <IcoPlay className={styles.ico} />}
         </div>
         <div className={styles.songInfo}>
-          Streetlight Manifesto - Everything Goes Numb
+          {currentSongTitle}
         </div>
         <PlayerVolume />
         <PlayerDuration />

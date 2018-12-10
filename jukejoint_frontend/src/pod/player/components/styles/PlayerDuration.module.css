@@ -15,4 +15,5 @@
   height: 3px;
   left: 0;
   position: fixed;
+  z-index: 30;
 }

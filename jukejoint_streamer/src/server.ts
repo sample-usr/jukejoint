@@ -5,8 +5,8 @@ import * as router from 'koa-router';
 const websockify = require('koa-websocket');
 import { websocketInstance } from './services/WebsocketService';
 
-const app  = new koa();
-const ws 	 = new router();
+const app = new koa();
+const ws = new router();
 const http = new router();
 
 websockify(app);
@@ -25,6 +25,7 @@ http.post('/add_song', PlayerController.addSong)
 http.get('/pause_song', PlayerController.pauseSong)
 http.get('/play', PlayerController.playSong)
 http.get('/get_current_song', PlayerController.getCurrentSong)
+http.get('/get_current_state', PlayerController.getCurrentState)
 http.get('/increase_volume', PlayerController.increaseVolume)
 http.get('/decrease_volume', PlayerController.decreaseVolume)
 

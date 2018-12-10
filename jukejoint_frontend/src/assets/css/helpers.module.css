@@ -22,7 +22,7 @@
 .floatRight {float: right;}
 
 .wrapper {
-  height: calc(100% - --headerHeight + --footerHeight);
+  height: calc(100% - 180px);
   position: relative;
   top: --headerHeight;
   overflow: auto;

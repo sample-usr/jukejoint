@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import { BrowserRouter as Router, Route } from 'react-router-dom';
-import socket from './services/WebsocketService';
+import { instance as WebSocketInstance } from './services/WebsocketService';
+import { PlayerService } from './services/PlayerService';
 
 import './assets/css/reset.css';
 import './assets/css/base.css';
@@ -19,17 +20,18 @@ import {
 
 
 const socketURL = process.env.NODE_ENV === 'development' ? 'ws://localhost:4004/register' : 'ws://shittydj.mantro.services';
-socket.setDependencies(socketURL);
-socket.open();
+WebSocketInstance.setDependencies(socketURL);
+WebSocketInstance.open(PlayerService.getInstance().getCurrentState);
 
 class App extends Component {
+
   render() {
     return (
       <Router>
-        <div>
-          <Route exact path="/" component={HomeRouter} /* inject socket.playerState ?*//>
+        <React.Fragment>
+          <Route exact path="/" component={HomeRouter} />
           <Route exact path="/playlist" component={PlaylistRouter} />
-        </div>
+        </React.Fragment>
       </Router>
     );
   }

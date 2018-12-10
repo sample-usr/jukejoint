@@ -2,7 +2,8 @@
 @value --black, --fontColor from variables;
 
 html,
-body {
+body,
+#root {
     height: 100%;
 }
 

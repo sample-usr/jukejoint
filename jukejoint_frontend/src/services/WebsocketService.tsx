@@ -5,9 +5,9 @@ class Socket {
   private socketUrl?: string;
 
   private ws?: WebSocket;
-  private onOpenCallbacks:  Array<() => any> = [];
+  private onOpenCallbacks: Array<() => any> = [];
   private keepAliveInterval: any;
-  public playerState: IPlayer|null = null;
+  public playerState: IPlayer | null = null;
 
 
   public setDependencies = (socketUrl: string) => {
@@ -28,8 +28,8 @@ class Socket {
     this.onOpenCallbacks.push(callback);
   }
 
-  public open = () => {
-    if(!this.socketUrl) {
+  public open = (callback?: () => void) => {
+    if (!this.socketUrl) {
       console.error('cannot open socket connection to API without URL');
       return;
     }
@@ -41,10 +41,14 @@ class Socket {
     this.ws = new WebSocket(this.socketUrl);
 
     this.ws.onopen = async () => {
-      this.onOpenCallbacks.forEach((cb) => cb() );
+      this.onOpenCallbacks.forEach((cb) => cb());
 
       if (!this.keepAliveInterval) {
         this.keepAliveInterval = setInterval(this.keepAliveMessage, 5000);
+      }
+
+      if (callback) {
+        callback();
       }
 
     };
@@ -53,11 +57,11 @@ class Socket {
 
       const msg: IPlayer = JSON.parse(e.data);
       this.playerState = msg;
-      console.log(msg);
+      console.log('WS onMessage:', msg);
     };
 
     this.ws.onerror = (e) => {
-      if(this.keepAliveInterval) {
+      if (this.keepAliveInterval) {
         clearInterval(this.keepAliveInterval);
       }
       delete this.keepAliveInterval;
@@ -66,7 +70,7 @@ class Socket {
     };
 
     this.ws.onclose = () => {
-      if(this.keepAliveInterval) {
+      if (this.keepAliveInterval) {
         clearInterval(this.keepAliveInterval);
       }
       delete this.keepAliveInterval;
@@ -105,4 +109,6 @@ class Socket {
   private noop = () => null;
 }
 
-export default new Socket();
+const instance = new Socket();
+
+export { instance };

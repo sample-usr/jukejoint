@@ -5,7 +5,7 @@ const parser = require('co-body');
 const player = Player.getInstance();
 
 
-export async function addSong(ctx:any) {
+export async function addSong(ctx: any) {
   // console.log(ctx.request.body);
   const request = await parser.json(ctx);
 
@@ -19,7 +19,7 @@ export async function addSong(ctx:any) {
   }
 }
 
-export async function pauseSong(ctx:any) {
+export async function pauseSong(ctx: any) {
   await player.pause();
   websocketInstance.sendMsg(player.getPlayerState());
   ctx.status = 200;
@@ -38,6 +38,11 @@ export async function getCurrentSong(ctx: any) {
   } else {
     ctx.status = 204;
   }
+}
+
+export async function getCurrentState(ctx: any) {
+  ctx.status = 200;
+  websocketInstance.sendMsg(player.getPlayerState());
 }
 
 export async function increaseVolume(ctx: any) {
