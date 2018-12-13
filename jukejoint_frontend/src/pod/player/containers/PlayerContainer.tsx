@@ -26,7 +26,7 @@ class PlayerContainer extends Component<Props> {
   }
 
   public render() {
-    const { player } = this.props.appContext;
+    const { player, setLoading } = this.props.appContext;
     if (player) {
       return (
         <div className={`${stylesHelpers.clearfix} ${styles.wrapper}`}>
@@ -38,7 +38,7 @@ class PlayerContainer extends Component<Props> {
               {`${player.currentSong.title}`}
             </div>
           }
-          <PlayerVolume volume={player.volume} />
+          <PlayerVolume volume={player.volume} setLoading={setLoading} />
           <PlayerDuration/>
         </div>
       );
