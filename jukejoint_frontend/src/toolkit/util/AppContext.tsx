@@ -11,7 +11,8 @@ import { IPlayer } from '@jukejoint/common/lib/interfaces';
 
 export type AppContextType = {
   player:IPlayer | undefined;
-  isLoading:boolean;
+  loading:boolean;
+  setLoading: (laoding:boolean) => void;
 };
 
 const defaultPlayerContext:IPlayer = {
@@ -23,7 +24,8 @@ const defaultPlayerContext:IPlayer = {
 
 const ctxt = React.createContext<AppContextType>({
   player: defaultPlayerContext,
-  isLoading: false
+  loading: false,
+  setLoading: () => {}
 });
 
 export const AppContextProvider = ctxt.Provider;

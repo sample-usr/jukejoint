@@ -35,19 +35,24 @@ class App extends Component<{}, State> {
     this.state = {
       appContext: {
         player: undefined,
-        isLoading: false
+        loading: false,
+        setLoading: this.setIsLoading,
       }
     }
-    websocketStream.subscribe((playerObj: IPlayer) => this.setState({ appContext: { player: playerObj, isLoading: false } }));
+    websocketStream.subscribe((playerObj: IPlayer) =>
+      this.setState({ appContext: { player: playerObj, loading: false, setLoading: this.setIsLoading } }));
   }
 
-  public setIsLoading = (isLoading: boolean) => this.setState({ appContext: { ...this.state.appContext, isLoading } });
+  private setIsLoading = (loading: boolean) => {
+    this.setState({ appContext: { ...this.state.appContext, loading } });
+  }
 
   render() {
+    console.log(this.state.appContext);
     return (
       <Router>
         <AppContextProvider value={this.state.appContext}>
-          <Loading isVisible={this.state.appContext.isLoading} />
+          <Loading isVisible={this.state.appContext.loading} />
           <Route exact path="/" component={HomeRouter}/>
           <Route exact path="/playlist" component={PlaylistRouter}/>
         </AppContextProvider>

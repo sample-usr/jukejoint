@@ -20,8 +20,10 @@ type Props = AppContextProp;
 
 class PlayerContainer extends Component<Props> {
 
-  private togglePlayPause = (isPlaying:boolean) =>
+  private togglePlayPause = (isPlaying:boolean) => {
     isPlaying ? PlayerService.getInstance().pause() : PlayerService.getInstance().play();
+    this.props.appContext.setLoading(true);
+  }
 
   public render() {
     const { player } = this.props.appContext;
