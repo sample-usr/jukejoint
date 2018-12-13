@@ -25,7 +25,7 @@ import './assets/css/base.css';
 // Initialize websocket
 const socketURL = process.env.NODE_ENV === 'development'
   ? 'ws://localhost:4004/register'
-  : 'ws://shittydj.mantro.services';
+  : 'ws://dj.mantro.services:4004/register';
 
 const websocketStream = webSocket<IPlayer>(socketURL);
 
