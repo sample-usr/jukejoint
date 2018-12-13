@@ -10,8 +10,6 @@ installed then simply run `brew install ffmpeg` and you are done.
 
 Run `yarn start` at the root of the repository. This will start all three packages in watch mode.
 
-> You have to have `ffmpeg` installed on your OS for `@jukejoint/streamer` to work
-
 ## Contributing
 
 To submit code just branch off from latest `master` and do a pull request.
