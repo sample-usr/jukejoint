@@ -38,7 +38,7 @@ class PlayerContainer extends Component<Props> {
               {`${player.currentSong.title}`}
             </div>
           }
-          <PlayerVolume/>
+          <PlayerVolume volume={player.volume} />
           <PlayerDuration/>
         </div>
       );
