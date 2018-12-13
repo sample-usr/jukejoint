@@ -1,7 +1,26 @@
-.inputBtn {
-    composes: inputBtn from "./PlaylistAddLink.module.css";
+@value variables: "../../../assets/css/variables.css";
+@value --fontColor from variables;
+
+.input {
+    border: 1px solid #303030;
+    background: #121212;
+    color: --fontColor;
+    height: 35px;
+    width: calc(100% - 65px);
+    float: left;
+    font-size: 16px;
+    padding: 0 10px;
+    outline: 0;
+}
+.input:focus {
+    border-color: #2264b6;
 }
 
 .btn {
-    composes: btn from "./PlaylistAddLink.module.css";
+    border: 1px solid #303030;
+    height: 35px;
+    width: 65px;
+    float: right;
+    background: #343434;
+    cursor: pointer;
 }

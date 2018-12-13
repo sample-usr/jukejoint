@@ -15,7 +15,7 @@ class PlaylistQueue extends Component<IProps, any> {
 
   private onClick = () => {
     if (this.props.onClick) {
-      this.props.onClick(this.props.id);
+      this.props.onClick(`https://www.youtube.com/watch?v=${this.props.id}`);
     }
   }
 
