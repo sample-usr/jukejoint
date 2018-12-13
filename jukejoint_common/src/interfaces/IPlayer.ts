@@ -13,7 +13,7 @@ interface ISong {
 interface IPlayer {
   isPlaying:boolean;
   volume:number;
-  currentSong:SongModel;
+  currentSong:SongModel | undefined;
   queue:SongModel[];
 }
 

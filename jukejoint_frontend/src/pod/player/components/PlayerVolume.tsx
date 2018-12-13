@@ -1,13 +1,13 @@
 import React, { Component } from 'react';
 
-import styles from './styles/PlayerVolume.module.css';
+import styles from '../styles/PlayerVolume.module.css';
 import stylesHelpers from '../../../assets/css/helpers.module.css';
 
 import { ReactComponent as IcoVolume } from '../../../assets/img/ico/ico-volume.svg';
 import { ReactComponent as IcoVolumeUp } from '../../../assets/img/ico/ico-volume-up.svg';
 import { ReactComponent as IcoVolumeDown } from '../../../assets/img/ico/ico-volume-down.svg';
 
-import { PlayerService } from '../../../services/PlayerService';
+import { PlayerService } from '../../../services';
 
 type State = {
   isVisible: boolean;

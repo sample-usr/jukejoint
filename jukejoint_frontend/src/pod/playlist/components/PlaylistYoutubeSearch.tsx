@@ -1,9 +1,9 @@
 import React, { Component } from 'react';
-import styles from './styles/PlayerYoutubeSearch.module.css';
+import styles from '../styles/PlayerYoutubeSearch.module.css';
 import stylesHelpers from '../../../assets/css/helpers.module.css'
 import { PlaylistQueue } from './';
-import PlaylistQueueStyles from './styles/PlaylistQueue.module.css';
-import { PlayerService } from '../../../services/PlayerService';
+import PlaylistQueueStyles from '../styles/PlaylistQueue.module.css';
+import { PlayerService } from '../../../services';
 import { PROVIDERS } from '@jukejoint/common/lib/util/const';
 
 interface IState {

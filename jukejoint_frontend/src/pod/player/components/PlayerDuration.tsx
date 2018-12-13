@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import styles from './styles/PlayerDuration.module.css';
+import styles from '../styles/PlayerDuration.module.css';
 
 class SongDuration extends Component {
 

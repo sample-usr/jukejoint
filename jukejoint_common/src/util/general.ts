@@ -1,6 +1,10 @@
 import * as fs from 'fs';
 import { JsonConvert, ValueCheckingMode } from 'json2typescript';
 
+// Ramda exports
+export const partial = require('ramda/src/partial');
+export const isEmpty = require('ramda/src/isEmpty');
+
 export const jsonConvert = new JsonConvert();
 jsonConvert.valueCheckingMode = ValueCheckingMode.ALLOW_NULL;
 

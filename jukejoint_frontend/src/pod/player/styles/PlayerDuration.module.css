@@ -1,4 +1,4 @@
-@value variables: "../../../../assets/css/variables.css";
+@value variables: "../../../assets/css/variables.css";
 @value --fontColor from variables;
 
 .time {

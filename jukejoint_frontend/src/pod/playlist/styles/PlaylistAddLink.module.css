@@ -1,4 +1,4 @@
-@value variables: "../../../../assets/css/variables.css";
+@value variables: "../../../assets/css/variables.css";
 @value --fontColor, --black from variables;
 .inputBtn {
     border-radius: 3px;
@@ -17,19 +17,4 @@
     color: --black;
     width: 120px !important;
     float: right;
-}
-
-.hr {
-    border-bottom: 1px solid --fontColor;
-    height: 1px;
-    margin: 20px 0 10px;
-    width: 100%;
-}
-
-.h4 {
-    font-size: 18px;
-    font-weight: 500;
-    line-height: 25px;
-    margin-bottom: 20px;
-    color: --fontColor;
 }

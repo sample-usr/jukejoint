@@ -2,7 +2,7 @@ import axios from 'axios';
 import { apiRequest } from '../toolkit/util/api';
 import { API_METHOD_TYPE } from '../toolkit/const/api';
 
-export class PlaylistService {
+export default class PlaylistService {
     private static instance:PlaylistService;
     private readonly api: string;
 
@@ -35,20 +35,20 @@ export class PlaylistService {
       // data.append('mimetype', 'text/plain');
 
       const res = await apiRequest(this.api + '/createPlaylist', API_METHOD_TYPE.POST, data);
-      
+
       console.log('hello createPlaylist:', res);
-      
+
       return res;
     }
 
     getPlaylists = async () => {
       // TODO: get from socket?
-    
+
       // const res = await apiRequest(this.api + '/getCurrentSong', API_METHOD_TYPE.GET);
 
       // console.log('getCurrentSong request:', res);
 
-      // return res; 
+      // return res;
     }
 
     getCurrentSong = async () => {

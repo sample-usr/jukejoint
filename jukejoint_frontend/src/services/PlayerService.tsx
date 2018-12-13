@@ -2,7 +2,7 @@ import { apiRequest } from '../toolkit/util/api';
 import { API_METHOD_TYPE } from '../toolkit/const/api';
 import { PROVIDERS } from '@jukejoint/common/lib/util/const';
 
-export class PlayerService {
+export default class PlayerService {
     private static instance:PlayerService;
     private readonly api: string;
 

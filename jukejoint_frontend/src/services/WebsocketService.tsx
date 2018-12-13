@@ -7,7 +7,7 @@ class Socket {
   private ws?: WebSocket;
   private onOpenCallbacks:  Array<() => any> = [];
   private keepAliveInterval: any;
-  public playerState: IPlayer|null = null;
+  public playerState:IPlayer | undefined = undefined;
 
 
   public setDependencies = (socketUrl: string) => {

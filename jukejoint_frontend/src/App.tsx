@@ -1,11 +1,12 @@
 import React, { Component } from 'react';
 import { BrowserRouter as Router, Route } from 'react-router-dom';
-import socket from './services/WebsocketService';
-
-import './assets/css/reset.css';
-import './assets/css/base.css';
 
 // Utils
+import socket from './services/WebsocketService';
+import {
+  AppContextType,
+  AppContextProvider
+} from './toolkit/util/AppContext';
 // Constants
 // Actions
 // Models
@@ -16,20 +17,29 @@ import {
   PlaylistRouter,
 } from './routes';
 // Styles
+import './assets/css/reset.css';
+import './assets/css/base.css';
 
+// Initialize websocket
+const socketURL = process.env.NODE_ENV === 'development'
+  ? 'ws://localhost:4004/register'
+  : 'ws://shittydj.mantro.services';
 
-const socketURL = process.env.NODE_ENV === 'development' ? 'ws://localhost:4004/register' : 'ws://shittydj.mantro.services';
 socket.setDependencies(socketURL);
 socket.open();
+
+const appContext:AppContextType = {
+  player: socket.playerState,
+};
 
 class App extends Component {
   render() {
     return (
       <Router>
-        <div>
-          <Route exact path="/" component={HomeRouter} /* inject socket.playerState ?*//>
-          <Route exact path="/playlist" component={PlaylistRouter} />
-        </div>
+        <AppContextProvider value={appContext}>
+          <Route exact path="/" component={HomeRouter}/>
+          <Route exact path="/playlist" component={PlaylistRouter}/>
+        </AppContextProvider>
       </Router>
     );
   }

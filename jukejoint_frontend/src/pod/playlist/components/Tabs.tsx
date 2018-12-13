@@ -1,5 +1,5 @@
 import * as React from 'react';
-import styles from './styles/Tabs.module.css';
+import styles from '../styles/Tabs.module.css';
 import stylesHelpers from '../../../assets/css/helpers.module.css'
 
 interface IProps {

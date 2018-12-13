@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
-import styles from './styles/PlaylistAddLink.module.css';
+import styles from '../styles/PlaylistAddLink.module.css';
 import stylesHelpers from '../../../assets/css/helpers.module.css'
-import { PlayerService } from '../../../services/PlayerService';
+import { PlayerService } from '../../../services';
 import { PROVIDERS } from '@jukejoint/common/lib/util/const';
 
 interface IState {

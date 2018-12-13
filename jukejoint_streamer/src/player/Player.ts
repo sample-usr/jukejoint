@@ -35,7 +35,7 @@ export default class Player {
   private closeStream = () => {
     if (this.stream){
       this.stream.unpipe(this.speaker);
-    } 
+    }
 
     // Hack to avoid speaker audio ring buffer error
     setTimeout(() => this.speaker.close(), this.SPEAKER_CLOSE_WAIT);
@@ -125,7 +125,7 @@ export default class Player {
   }
 
   public getCurrentSong = () => {
-    return this.currentSong;
+    return this.currentSong || null;
   }
 
   public skipTrack = () => {

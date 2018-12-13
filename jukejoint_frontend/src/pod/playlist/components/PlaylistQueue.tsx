@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import styles from './styles/PlaylistQueue.module.css';
+import styles from '../styles/PlaylistQueue.module.css';
 import stylesHelpers from '../../../assets/css/helpers.module.css'
 import { throws } from 'assert';
 

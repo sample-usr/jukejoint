@@ -1,26 +1,35 @@
+import * as Router from 'koa-router';
 const koa = require('koa');
 const cors = require('@koa/cors');
-
-import * as router from 'koa-router';
 const websockify = require('koa-websocket');
+
+// Utils
+// Constants
+// Services
 import { websocketInstance } from './services/WebsocketService';
+// Models
+// Interfaces
+// Controllers
+import {
+	WebsocketController,
+	PlayerController,
+} from './controllers';
 
 const app  = new koa();
-const ws 	 = new router();
-const http = new router();
+const ws 	 = new Router();
+const http = new Router();
 
 websockify(app);
 const koaOptions = {
 	origin: '*',
 };
 // const PlayerController = require('./controller/PlayerController');
-import { PlayerController } from './controller';
 
-ws.get('/register', async (ctx: router.IRouterContext) => {
+// ws.get('/register', async (ctx: router.IRouterContext) => {
+// 	websocketInstance.register(ctx);
+// });
 
-	websocketInstance.register(ctx);
-});
-
+ws.get('/register', WebsocketController.register);
 http.post('/add_song', PlayerController.addSong)
 http.get('/pause_song', PlayerController.pauseSong)
 http.get('/play', PlayerController.playSong)

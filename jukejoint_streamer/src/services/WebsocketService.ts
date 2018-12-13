@@ -1,15 +1,14 @@
-import * as router from 'koa-router';
-import IPlayerState from '../../../jukejoint_common/src/interfaces/IPlayer';
+import { IRouterContext } from 'koa-router';
+import { IPlayer } from '@jukejoint/common/lib/interfaces';
 
-export default class WebsocketService {
+class WebsocketService {
+  private connections:IRouterContext[] = [];
 
-  private connections: router.IRouterContext[] = [];
-
-  public register(ws: router.IRouterContext) {
+  public register(ws:IRouterContext) {
     this.connections.push(ws);
   }
 
-  public sendMsg(state: IPlayerState) {
+  public sendMsg(state:IPlayer) {
     const msg = JSON.stringify(state);
 
     this.connections = this.connections
