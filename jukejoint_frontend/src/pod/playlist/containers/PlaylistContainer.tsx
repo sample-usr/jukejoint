@@ -17,7 +17,6 @@ import {
 // Styles
 import queueStyles from '../styles/PlaylistQueue.module.css';
 import stylesHelpers from '../../../assets/css/helpers.module.css';
-import TestImg from '../../../assets/img/test-img.jpg';
 import { ReactComponent as IcoPlus } from '../../../assets/img/ico/ico-plus.svg';
 import styles from '../styles/PlaylistContainer.module.css';
 

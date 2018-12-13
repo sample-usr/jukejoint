@@ -5,6 +5,7 @@ import { PlaylistQueue } from './';
 import PlaylistQueueStyles from '../styles/PlaylistQueue.module.css';
 import { PlayerService } from '../../../services';
 import { PROVIDERS } from '@jukejoint/common/lib/util/const';
+import { ReactComponent as IcoSearch } from '../../../assets/img/ico/ico-search.svg';
 
 interface IState {
   searchText: string;
@@ -56,10 +57,9 @@ class PlaylistYoutubeSearch extends Component<IProps, IState> {
     this.searchField.focus();
   }
 
-  private submiFormSearchYoutube = (e: React.FormEvent) => {
-    e.preventDefault();
+  private submiFormSearchYoutube = () => {
     const { searchText } = this.state;
-    fetch(`https://www.googleapis.com/youtube/v3/search?part=snippet&maxResults=10&order=viewCount&q=${searchText}&fields=items(id%2FvideoId%2Csnippet(description%2Cthumbnails%2Fdefault%2Ctitle))&key=AIzaSyA-peAPxzMqXOY5B9lokyP_H91og7pPZXg`)
+    fetch(`https://www.googleapis.com/youtube/v3/search?part=snippet&maxResults=20&order=viewCount&q=${searchText}&fields=items(id%2FvideoId%2Csnippet(description%2Cthumbnails%2Fdefault%2Ctitle))&key=AIzaSyA-peAPxzMqXOY5B9lokyP_H91og7pPZXg`)
       .then(response => response.json())
       .then(data => {
         // FILTER ONLY RESULTS, WHICH HAS ITEM.ID
@@ -69,11 +69,23 @@ class PlaylistYoutubeSearch extends Component<IProps, IState> {
       });
   }
 
-  public addSongToPlaylist = async (songId: string) => {
-    const res = await PlayerService.getInstance().queueSong(`https://www.youtube.com/watch?v=${songId}`, PROVIDERS.YOUTUBE);
-    console.log('res', res);
+  public addSongToPlaylist = async (link: string) => {
+    const res = await PlayerService.getInstance().queueSong(link, PROVIDERS.YOUTUBE);
     if (res.status === 200) {
       this.props.toggleAddSongModal();
+    }
+  }
+
+  private addButtonOnClick = (e: React.FormEvent) => {
+    e.preventDefault();
+
+    const { searchText } = this.state;
+    const pattern = /^((http|https):\/\/)/;
+
+    if(pattern.test(searchText)) {
+      this.addSongToPlaylist(searchText);
+    }else{
+      this.submiFormSearchYoutube();
     }
   }
 
@@ -81,22 +93,22 @@ class PlaylistYoutubeSearch extends Component<IProps, IState> {
     const { searchText, searchRes } = this.state;
 
     return <React.Fragment>
-      <form onSubmit={this.submiFormSearchYoutube} className={stylesHelpers.clearfix}>
+      <form onSubmit={this.addButtonOnClick} className={stylesHelpers.clearfix}>
         <input
           type="search"
-          className={styles.inputBtn}
+          className={styles.input}
           value={searchText}
           onChange={e => this.setState({ searchText: e.currentTarget.value })}
-          placeholder="youtube search"
+          placeholder="Search YouTube / Paste link"
           ref={r => this.searchField = r}
         />
         <button
           type="submit"
-          className={`${styles.inputBtn} ${styles.btn}`}
-          onClick={this.submiFormSearchYoutube}
+          className={`${styles.btn} ${styles.btn}`}
+          onClick={this.addButtonOnClick}
           disabled={!searchText}
         >
-          Search
+          <IcoSearch />
         </button>
       </form>
       {searchRes && searchRes.length !== 0 &&
