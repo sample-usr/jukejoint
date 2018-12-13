@@ -29,7 +29,7 @@ export default class Player {
   private stream:any;
   private isPlaying = false;
   private currentSong:SongModel;
-  private currentVolume:number;
+  private currentVolume:number = 50;
   private SPEAKER_CLOSE_WAIT = 500;
 
   public queue:SongModel[] = [];
