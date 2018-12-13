@@ -19,6 +19,7 @@ import {
   PlaylistRouter,
 } from './routes';
 import { Loading } from './pod/loading';
+import { FourOuFour } from './pod/fourOuFour';
 // Styles
 import './assets/css/reset.css';
 import './assets/css/base.css';
@@ -55,6 +56,7 @@ class App extends Component<{}, State> {
           <Loading isVisible={this.state.appContext.loading} />
           <Route exact path="/" component={HomeRouter}/>
           <Route exact path="/playlist" component={PlaylistRouter}/>
+          <Route component={FourOuFour}/>
         </AppContextProvider>
       </Router>
     );
