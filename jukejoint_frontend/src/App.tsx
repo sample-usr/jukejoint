@@ -9,6 +9,7 @@ import {
   AppContextProvider
 } from './toolkit/util/AppContext';
 // Constants
+import { getWSURL } from './toolkit/util/api';
 // Actions
 // Models
 // Interfaces
@@ -23,14 +24,8 @@ import './assets/css/reset.css';
 import './assets/css/base.css';
 
 // Initialize websocket
-const socketURL = process.env.NODE_ENV === 'development'
-  ? 'ws://localhost:4004/register'
-  : 'ws://dj.mantro.services:4004/register';
+const websocketStream = webSocket<IPlayer>(getWSURL());
 
-const websocketStream = webSocket<IPlayer>(socketURL);
-
-// socket.setDependencies(socketURL);
-// socket.open();
 type State = {
   appContext: AppContextType
 }

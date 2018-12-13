@@ -5,6 +5,7 @@ const websockify = require('koa-websocket');
 
 // Utils
 // Constants
+import { API_URL, API_PORT } from '@jukejoint/common/lib/util/const';
 // Services
 import { websocketInstance } from './services/WebsocketService';
 // Models
@@ -23,25 +24,20 @@ websockify(app);
 const koaOptions = {
 	origin: '*',
 };
-// const PlayerController = require('./controller/PlayerController');
 
-// ws.get('/register', async (ctx: router.IRouterContext) => {
-// 	websocketInstance.register(ctx);
-// });
-
-ws.get('/register', WebsocketController.register);
-http.post('/add_song', PlayerController.addSong)
-http.get('/pause_song', PlayerController.pauseSong)
-http.get('/play', PlayerController.playSong)
-http.get('/get_current_song', PlayerController.getCurrentSong)
-http.get('/increase_volume', PlayerController.increaseVolume)
-http.get('/decrease_volume', PlayerController.decreaseVolume)
+ws.get(API_URL.WS_CONN, WebsocketController.register);
+http.post(API_URL.ADD_SONG, PlayerController.addSong)
+http.get(API_URL.PAUSE_SONG, PlayerController.pauseSong)
+http.get(API_URL.PLAY, PlayerController.playSong)
+http.get(API_URL.GET_CURRENT_SONG, PlayerController.getCurrentSong)
+http.get(API_URL.INCREASE_VOLUME, PlayerController.increaseVolume)
+http.get(API_URL.DECREASE_VOLUME, PlayerController.decreaseVolume)
 
 // app.use(bodyParser());
 app.use(cors(koaOptions));
 app.use(http.routes()).use(http.allowedMethods());
 app.ws.use(ws.routes()).use(ws.allowedMethods());
 
-app.listen(4004);
+app.listen(API_PORT);
 
-console.log('Server running on port 4004');
+console.log(`Server running on port ${API_PORT}`);

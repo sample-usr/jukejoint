@@ -1,69 +1,49 @@
-import { apiRequest } from '../toolkit/util/api';
-import { API_METHOD_TYPE } from '../toolkit/const/api';
-import { PROVIDERS } from '@jukejoint/common/lib/util/const';
+// Utils
+import { apiRequest, getApiURL } from '../toolkit/util/api';
+// Constants
+import { API_METHOD_TYPE  } from '../toolkit/const/api';
+import { PROVIDERS, API_URL } from '@jukejoint/common/lib/util/const';
+// Actions
+// Models
+// Interfaces
 
 export default class PlayerService {
-    private static instance:PlayerService;
-    private readonly api: string;
+  private static instance:PlayerService;
 
-    private constructor() {
-        this.api = 'http://localhost:4004';
-
+  public static getInstance() {
+    if (!PlayerService.instance) {
+        PlayerService.instance = new PlayerService();
     }
-    public static getInstance() {
-      if (!PlayerService.instance) {
-          PlayerService.instance = new PlayerService();
-      }
-      return PlayerService.instance;
-    }
+    return PlayerService.instance;
+  }
 
-    queueSong = async (songURL: string, providerType: PROVIDERS) => {
-      const res = await apiRequest(this.api + '/add_song', API_METHOD_TYPE.POST, { songURL, providerType });
+  queueSong = async (songURL:string, providerType: PROVIDERS) => {
+    const res = await apiRequest(getApiURL(API_URL.ADD_SONG), API_METHOD_TYPE.POST, { songURL, providerType });
+    return res;
+  }
 
-      console.log('queueSong request:', res);
+  play = async () => {
+    const res = await apiRequest(getApiURL(API_URL.PLAY), API_METHOD_TYPE.GET);
+    return res;
+  }
 
-      return res;
-    }
+  pause = async () => {
+    const res = await apiRequest(getApiURL(API_URL.PAUSE_SONG), API_METHOD_TYPE.GET);
+    return res;
+  }
 
-    play = async () => {
-      const res = await apiRequest(this.api + '/play', API_METHOD_TYPE.GET);
+  increaseVolume = async () => {
+    const res = await apiRequest(getApiURL(API_URL.INCREASE_VOLUME), API_METHOD_TYPE.GET);
+    return res;
+  };
 
-      console.log('play request:', res);
+  decreaseVolume = async () => {
+    const res = await apiRequest(getApiURL(API_URL.DECREASE_VOLUME), API_METHOD_TYPE.GET);
+    return res;
+  }
 
-      return res;
-    }
-
-    pause = async () => {
-      const res = await apiRequest(this.api + '/pause_song', API_METHOD_TYPE.GET);
-
-      console.log('pause request:', res);
-
-      return res;
-    }
-
-    increaseVolume = async () => {
-      const res = await apiRequest(this.api + '/increase_volume', API_METHOD_TYPE.GET);
-
-      console.log('increaseVol request:', res);
-
-      return res;
-    };
-
-    decreaseVolume = async () => {
-      const res = await apiRequest(this.api + '/decrease_volume', API_METHOD_TYPE.GET);
-
-      console.log('decreaseVol request:', res);
-
-      return res;
-    }
-
-    getCurrentSong = async () => {
-      const res = await apiRequest(this.api + '/get_current_song', API_METHOD_TYPE.GET);
-
-      console.log('getCurrentSong request:', res);
-
-      return res;
-    }
-
-
+  getCurrentSong = async () => {
+    const res = await apiRequest(getApiURL(API_URL.GET_CURRENT_SONG), API_METHOD_TYPE.GET);
+    return res;
+  }
 }
