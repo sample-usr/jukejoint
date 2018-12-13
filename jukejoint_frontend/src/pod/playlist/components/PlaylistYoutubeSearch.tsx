@@ -56,13 +56,6 @@ class PlaylistYoutubeSearch extends Component<IProps, IState> {
     this.searchField.focus();
   }
 
-  /*
-  private addSongToQueue = (e: React.FormEvent) => {
-    // TODO: API CALL FOR ADDING SONG TO QUEUE
-    this.props.toggleAddSongModal();
-  }
-  */
-
   private submiFormSearchYoutube = (e: React.FormEvent) => {
     e.preventDefault();
     const { searchText } = this.state;

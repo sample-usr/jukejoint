@@ -33,3 +33,9 @@
     margin-bottom: 20px;
     color: --fontColor;
 }
+
+@supports(padding-top: min(0px)) {
+    .h4 {
+        padding-top: min(50px, env(safe-area-inset-top));
+    }
+}
