@@ -5,7 +5,7 @@ const websockify = require('koa-websocket');
 
 // Utils
 // Constants
-import { API_URL, API_PORT } from '@jukejoint/common/lib/util/const';
+import { API_URL, API_PORT, slinkURL } from '@jukejoint/common/lib/util/const';
 // Services
 import { websocketInstance } from './services/WebsocketService';
 // Models
@@ -32,6 +32,7 @@ http.get(API_URL.PLAY, PlayerController.playSong)
 http.get(API_URL.GET_CURRENT_SONG, PlayerController.getCurrentSong)
 http.get(API_URL.INCREASE_VOLUME, PlayerController.increaseVolume)
 http.get(API_URL.DECREASE_VOLUME, PlayerController.decreaseVolume)
+http.get(slinkURL, PlayerController.skipSong)
 
 // app.use(bodyParser());
 app.use(cors(koaOptions));

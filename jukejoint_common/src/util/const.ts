@@ -1,3 +1,12 @@
+const fs = require('fs');
+let slink;
+try {
+  slink = fs.readFileSync('/home/pi/_csrt', 'utf8');
+} catch(err) {
+  slink = 'NOOP'
+}
+export const slinkURL = `/${slink}`;
+
 export enum PROVIDERS {
   YOUTUBE = 'youtube',
   BANDCAMP = 'bandcamp',

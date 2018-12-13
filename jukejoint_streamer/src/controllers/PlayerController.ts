@@ -1,9 +1,9 @@
 import Provider from '../providers/Provider';
 import Player from '../player/Player';
 import { websocketInstance } from '../services/WebsocketService';
+
 const parser = require('co-body');
 const player = Player.getInstance();
-
 
 export async function addSong(ctx:any) {
   // console.log(ctx.request.body);
@@ -48,6 +48,12 @@ export async function increaseVolume(ctx: any) {
 
 export async function decreaseVolume(ctx: any) {
   player.decreaseVolume();
+  websocketInstance.sendMsg(player.getPlayerState());
+  ctx.status = 200;
+}
+
+export async function skipSong(ctx: any) {
+  player.skipTrack();
   websocketInstance.sendMsg(player.getPlayerState());
   ctx.status = 200;
 }
