@@ -1,5 +1,6 @@
 import { IPlayer } from '@jukejoint/common/lib/interfaces';
 
+
 class Socket {
   // External Dependencies
   private socketUrl?: string;
@@ -53,6 +54,7 @@ class Socket {
 
       const msg: IPlayer = JSON.parse(e.data);
       this.playerState = msg;
+      (window as any)._PLAYER_STATE = msg
       console.log(msg);
     };
 

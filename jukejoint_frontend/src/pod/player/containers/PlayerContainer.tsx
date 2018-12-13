@@ -25,15 +25,17 @@ class PlayerContainer extends Component<Props> {
 
   public render() {
     const { player } = this.props.appContext;
-    if (player && player.currentSong) {
+    if (player) {
       return (
         <div className={`${stylesHelpers.clearfix} ${styles.wrapper}`}>
-          <div className={styles.playPauseBtn} onClick={partial(this.togglePlayPause, player.isPlaying)}>
+          <div className={styles.playPauseBtn} onClick={partial(this.togglePlayPause, [player.isPlaying])}>
             {player.isPlaying ? <IcoPause className={styles.ico}/> : <IcoPlay className={styles.ico}/>}
           </div>
-          <div className={styles.songInfo}>
-            {`${player.currentSong.artist} - ${player.currentSong.title}`}
-          </div>
+          {player.currentSong &&
+            <div className={styles.songInfo}>
+              {`${player.currentSong.title}`}
+            </div>
+          }
           <PlayerVolume/>
           <PlayerDuration/>
         </div>
