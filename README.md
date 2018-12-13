@@ -5,6 +5,8 @@ The project is a mono-repo setup managed by `lernajs` and has the following pack
 3. @jukejoint/streamer (*koa backend with streaming*)
 
 ## DEV Setup
+You have to install the `ffmpeg` package for the server to be able to convert the song streams. If you have `homebrew`
+installed then simply run `brew install ffmpeg` and you are done.
 
 Run `yarn start` at the root of the repository. This will start all three packages in watch mode.
 
