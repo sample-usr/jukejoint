@@ -1,5 +1,4 @@
 import React, { Component } from 'react';
-import { AppContextProp, withAppContext } from '../../../toolkit/util/AppContext';
 
 import styles from '../styles/PlayerVolume.module.css';
 import stylesHelpers from '../../../assets/css/helpers.module.css';
@@ -15,7 +14,9 @@ type State = {
   isVisible: boolean;
 }
 
-type Props = AppContextProp;
+type Props = {
+  volume: number;
+};
 
 class VolumeControl extends Component<Props, State> {
   readonly state: State = {
@@ -40,7 +41,7 @@ class VolumeControl extends Component<Props, State> {
 
   public render() {
     const { isVisible } = this.state;
-    const { player } = this.props.appContext;
+    const { volume } = this.props;
 
     return (
       <div className={styles.wrapper}>
@@ -49,7 +50,7 @@ class VolumeControl extends Component<Props, State> {
         </div>
 
         <div className={`${styles.control} ${isVisible ? styles.show : ''}`}>
-          <div className={styles.playerVolume}>{player ? `${player.volume} %` : ''}</div>
+          <div className={styles.playerVolume}>{volume} %</div>
           <div onClick={this.volumeUp} className={stylesHelpers.pointer}>
             <IcoVolumeUp className={styles.ico} />
           </div>
@@ -62,4 +63,4 @@ class VolumeControl extends Component<Props, State> {
   }
 }
 
-export default withAppContext(VolumeControl);
+export default VolumeControl;
