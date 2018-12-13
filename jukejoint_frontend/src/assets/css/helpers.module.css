@@ -10,7 +10,7 @@
 
 .fullHeight {height: 100%;}
 .positionRelative {position: relative;}
-.maxWidth1000 {max-width: 1000px;}
+.appWrapper {max-width: 800px;}
 .margin0auto {margin: 0 auto;}
 
 .clearfix::after {
@@ -22,9 +22,9 @@
 .floatRight {float: right;}
 
 .wrapper {
-  height: calc(100% - --headerHeight + --footerHeight);
+  height: calc(100% - 120px);
   position: relative;
-  top: --headerHeight;
+  top: 60px;
   overflow: auto;
   padding: 15px 15px 10px;
   box-sizing: border-box;
