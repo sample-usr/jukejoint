@@ -5,6 +5,7 @@ import * as ffmpeg from 'fluent-ffmpeg';
 
 // Utils
 import { logger } from '@jukejoint/common/lib/util/general';
+import { websocketInstance } from '../services/WebsocketService';
 // Constants
 // Models
 import { SongModel } from '@jukejoint/common/lib/models';
@@ -94,6 +95,7 @@ export default class Player {
       // return error
       logger('# Queue is empty');
     }
+    websocketInstance.sendMsg(this.getPlayerState());
   }
 
   public resume = () => {
