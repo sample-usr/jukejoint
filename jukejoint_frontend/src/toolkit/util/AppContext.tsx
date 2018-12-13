@@ -11,6 +11,8 @@ import { IPlayer } from '@jukejoint/common/lib/interfaces';
 
 export type AppContextType = {
   player:IPlayer | undefined;
+  loading:boolean;
+  setLoading: (laoding:boolean) => void;
 };
 
 const defaultPlayerContext:IPlayer = {
@@ -22,6 +24,8 @@ const defaultPlayerContext:IPlayer = {
 
 const ctxt = React.createContext<AppContextType>({
   player: defaultPlayerContext,
+  loading: false,
+  setLoading: () => {}
 });
 
 export const AppContextProvider = ctxt.Provider;
@@ -31,8 +35,8 @@ export const AppContextConsumer = ctxt.Consumer;
 type Omit<T, K extends keyof T> = Pick<T, Exclude<keyof T, K>>;
 
 export function withAppContext<
-  P extends { appContext?: AppContextType },
-  R = Omit<P, 'appContext'>
+P extends { appContext?: AppContextType },
+R = Omit<P, 'appContext'>
 >(
   Component:any
 ): React.SFC<R> {

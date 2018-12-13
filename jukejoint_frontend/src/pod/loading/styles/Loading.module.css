@@ -1,0 +1,51 @@
+.loadingWrapper {
+  background: rgba(0, 0, 0, 0.7);
+  position: absolute;
+  z-index: 1000;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  visibility: hidden;
+  transition: opacity 0.25s, visibility 0s 0.25s;
+  opacity: 0;
+}
+
+.isVisible {
+  transition: opacity 0.25s !important;
+  visibility: visible !important;
+  opacity: 1 !important;
+}
+
+.loading {
+  text-align: center;
+}
+
+.poo {
+  margin-top: 0;
+  font-size: 8em;
+  transform-origin: left bottom;
+  animation: dance 1.5s infinite;
+  display: inline-block;
+}
+
+@keyframes dance {
+  0% {
+    transform-origin: left bottom;
+    transform: rotate(0deg);
+  }
+  25% {
+    transform: rotate(-15deg) translateY(-20px);
+  }
+  50% {
+    transform: rotate(0deg);
+    transform-origin: right bottom;
+  }
+  75% {
+    transform: rotate(15deg) translateY(-20px);
+  }
+  100% {
+    transform: rotate(0deg);
+  }
+}
