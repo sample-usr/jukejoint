@@ -28,6 +28,7 @@ export default class Player {
   private stream:any;
   private isPlaying = false;
   private currentSong:SongModel;
+  private currentVolume:number;
   private SPEAKER_CLOSE_WAIT = 500;
 
   public queue:SongModel[] = [];
@@ -137,6 +138,7 @@ export default class Player {
   public increaseVolume = () => {
     loudness.getVolume((err:any, vol:any) => {
       vol += 5;
+      this.currentVolume = vol;
       loudness.setVolume(vol, () => {
         console.log('setted Volume to', vol)
       });
@@ -146,6 +148,7 @@ export default class Player {
   public decreaseVolume = () => {
     loudness.getVolume((err:any, vol:any) => {
       vol -= 5;
+      this.currentVolume = vol;
       loudness.setVolume(vol, () => {
         console.log('setted Volume to', vol)
       });
@@ -159,7 +162,7 @@ export default class Player {
   public getPlayerState = () => {
     const playerState:IPlayer = {
       isPlaying: this.isPlaying,
-      volume: 50,
+      volume: this.currentVolume,
       currentSong: this.getCurrentSong(),
       queue: this.queue,
     }
