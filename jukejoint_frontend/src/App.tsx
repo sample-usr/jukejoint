@@ -3,7 +3,6 @@ import { BrowserRouter as Router, Route } from 'react-router-dom';
 import { webSocket } from 'rxjs/webSocket';
 
 // Utils
-import socket from './services/WebsocketService';
 import {
   AppContextType,
   AppContextProvider
@@ -19,6 +18,7 @@ import {
   HomeRouter,
   PlaylistRouter,
 } from './routes';
+import { Loading } from './pod/loading';
 // Styles
 import './assets/css/reset.css';
 import './assets/css/base.css';
@@ -33,15 +33,26 @@ class App extends Component<{}, State> {
   constructor(props:{}) {
     super(props);
     this.state = {
-      appContext: { player: undefined }
+      appContext: {
+        player: undefined,
+        loading: false,
+        setLoading: this.setIsLoading,
+      }
     }
-    websocketStream.subscribe((playerObj:IPlayer) => this.setState({ appContext: { player : playerObj }}));
+    websocketStream.subscribe((playerObj: IPlayer) =>
+      this.setState({ appContext: { player: playerObj, loading: false, setLoading: this.setIsLoading } }));
+  }
+
+  private setIsLoading = (loading: boolean) => {
+    this.setState({ appContext: { ...this.state.appContext, loading } });
   }
 
   render() {
+    console.log(this.state.appContext);
     return (
       <Router>
         <AppContextProvider value={this.state.appContext}>
+          <Loading isVisible={this.state.appContext.loading} />
           <Route exact path="/" component={HomeRouter}/>
           <Route exact path="/playlist" component={PlaylistRouter}/>
         </AppContextProvider>
