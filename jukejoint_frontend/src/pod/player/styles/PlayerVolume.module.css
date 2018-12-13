@@ -1,6 +1,5 @@
 @value variables: "../../../assets/css/variables.css";
 @value --footerHeight, --gray from variables;
-
 .ico {
   composes: ico from "./PlayerContainer.module.css";
 }
@@ -33,7 +32,14 @@
   transition: bottom 300ms ease 0s;
   width: --footerHeight;
 }
+
 .show {
-    bottom: --footerHeight !important;
-    transition: bottom 300ms ease 0s;
+  bottom: --footerHeight !important;
+  transition: bottom 300ms ease 0s;
+}
+
+.playerVolume {
+  font-size: 14px;
+  line-height: 20px;
+  padding-top: 5px;
 }
