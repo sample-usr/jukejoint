@@ -19,7 +19,7 @@ export default class HomeRouter extends Component {
     return (
       <div className={stylesHelpers.fullHeight}>
         <Header />
-        <div className={`${stylesHelpers.wrapper} ${stylesHelpers.maxWidth1000} ${stylesHelpers.margin0auto}`}>
+        <div className={`${stylesHelpers.wrapper} ${stylesHelpers.appWrapper} ${stylesHelpers.margin0auto}`}>
           <PlaylistContainer />
         </div>
         <PlayerContainer />

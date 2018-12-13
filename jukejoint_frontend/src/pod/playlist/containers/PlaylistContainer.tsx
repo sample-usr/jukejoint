@@ -28,49 +28,46 @@ type State = {
 }
 
 class PlaylistContainer extends React.Component<Props, State>{
-  readonly state:State = {
+  readonly state: State = {
     addSongModalVisible: false,
   }
 
   toggleAddSongModal = () =>
-    this.setState({ addSongModalVisible: !this.state.addSongModalVisible})
+    this.setState({ addSongModalVisible: !this.state.addSongModalVisible })
 
-  renderPlaylist = (player:IPlayer | undefined) => {
-    if (player && !isEmpty(player.queue)) {
-      return (
-        <div>
-          <ul className={queueStyles.list}>
-            {player.queue.map(
-              (song:SongModel) =>
-                <PlaylistQueue
-                  key={song.url}
-                  id={song.url}
-                  title={song.title}
-                  description={song.artist}
-                  img={song.artWork}/>
-            )}
-          </ul>
-        </div>
-      );
-    }
+  renderPlaylist = (player: IPlayer | undefined) => {
+    return (player && !isEmpty(player.queue)) ? (
+      <ul className={queueStyles.list}>
+        {player.queue.map(
+          (song: SongModel) =>
+            <PlaylistQueue
+              key={song.url}
+              id={song.url}
+              title={song.title}
+              description={song.artist}
+              img={song.artWork} />
+        )}
+      </ul>
+    ) : (
+        <div>No songs in queue</div>
+      )
   }
 
   render() {
     const { addSongModalVisible } = this.state;
     const { player } = this.props.appContext;
-    console.log(player);
     return (
       <React.Fragment>
-        <div className={`${stylesHelpers.maxWidth1000} ${stylesHelpers.margin0auto}`}>
+        <div className={`${stylesHelpers.appWrapper} ${stylesHelpers.margin0auto}`}>
           <h2 className={stylesHelpers.clearfix}>
-            Upcoming
+            Upcoming songs
             <IcoPlus className={styles.h2ico} onClick={this.toggleAddSongModal} />
           </h2>
         </div>
         {this.renderPlaylist(player)}
         <div
           className={`${styles.addSongModal} ${stylesHelpers.clearfix} ${addSongModalVisible ? styles.visible : ''}`}>
-          {addSongModalVisible && <PlaylistAddModal toggleAddSongModal={this.toggleAddSongModal}/>}
+          {addSongModalVisible && <PlaylistAddModal toggleAddSongModal={this.toggleAddSongModal} />}
         </div>
       </React.Fragment>
     );
