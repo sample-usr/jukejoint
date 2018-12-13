@@ -1,11 +1,22 @@
+@value variables: "../../../assets/css/variables.css";
+@value --headerHeight, --black from variables;
+
 .header {
   box-sizing: border-box;
   height: --headerHeight;
+  background: --black;
   left: 0;
-  padding: 10px 15px;
+  padding-top: 20px;
   position: fixed;
   top: 0;
   width: 100%;
+  z-index: 300;
+}
+
+@supports(padding: min(20px)) {
+  .header {
+      padding-top: min(35px, env(safe-area-inset-top));
+  }
 }
 
 .logo {

@@ -29,3 +29,13 @@
   padding: 15px 15px 10px;
   box-sizing: border-box;
 }
+
+.iPhoneXPadding {
+  padding-top: 0;
+}
+
+@supports(padding-top: min(0px)) {
+  .iPhoneXPadding {
+      padding-top: min(30px, env(safe-area-inset-top));
+  }
+}
