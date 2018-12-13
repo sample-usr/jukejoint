@@ -8,6 +8,7 @@ import stylesHelpers from '../../../assets/css/helpers.module.css'
 
 interface IProps {
     toggleAddSongModal: () => void;
+    setLoading: (v:boolean) => void;
 }
 
 class PlaylistAddModal extends Component<IProps, any> {
@@ -20,7 +21,7 @@ class PlaylistAddModal extends Component<IProps, any> {
                     <IcoClose className={`${stylesHelpers.pointer} ${stylesHelpers.floatRight}`} onClick={this.props.toggleAddSongModal} />
                 </h4>
                 
-                <PlaylistYoutubeSearch toggleAddSongModal={this.props.toggleAddSongModal} />
+                <PlaylistYoutubeSearch setLoading={this.props.setLoading} toggleAddSongModal={this.props.toggleAddSongModal} />
 
                 {/*<Tabs titles={['Search youtube', 'Paste link', 'Choose playlist']}>*}
                     {/* YOUTUBE SEARCH */}
