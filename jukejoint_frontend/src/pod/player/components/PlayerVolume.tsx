@@ -16,6 +16,7 @@ type State = {
 
 type Props = {
   volume: number;
+  setLoading: (v: boolean) => void;
 };
 
 class VolumeControl extends Component<Props, State> {
@@ -33,9 +34,12 @@ class VolumeControl extends Component<Props, State> {
 
 
   private volumeUp = () => {
+    this.props.setLoading(true);
     PlayerService.getInstance().increaseVolume();
   }
+
   private volumeDown = () => {
+    this.props.setLoading(true);
     PlayerService.getInstance().decreaseVolume();
   }
 

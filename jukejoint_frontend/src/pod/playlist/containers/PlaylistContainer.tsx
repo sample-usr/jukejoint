@@ -54,7 +54,7 @@ class PlaylistContainer extends React.Component<Props, State>{
 
   render() {
     const { addSongModalVisible } = this.state;
-    const { player } = this.props.appContext;
+    const { player, setLoading } = this.props.appContext;
     return (
       <React.Fragment>
         <div className={`${stylesHelpers.appWrapper} ${stylesHelpers.margin0auto}`}>
@@ -66,7 +66,7 @@ class PlaylistContainer extends React.Component<Props, State>{
         {this.renderPlaylist(player)}
         <div
           className={`${styles.addSongModal} ${stylesHelpers.clearfix} ${addSongModalVisible ? styles.visible : ''}`}>
-          {addSongModalVisible && <PlaylistAddModal toggleAddSongModal={this.toggleAddSongModal} />}
+          {addSongModalVisible && <PlaylistAddModal setLoading={setLoading} toggleAddSongModal={this.toggleAddSongModal} />}
         </div>
       </React.Fragment>
     );
