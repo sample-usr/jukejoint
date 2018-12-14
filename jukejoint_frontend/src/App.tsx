@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { BrowserRouter as Router, Route } from 'react-router-dom';
+import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
 import { webSocket } from 'rxjs/webSocket';
 
 // Utils
@@ -54,9 +54,11 @@ class App extends Component<{}, State> {
       <Router>
         <AppContextProvider value={this.state.appContext}>
           <Loading isVisible={this.state.appContext.loading} />
-          <Route exact path="/" component={HomeRouter}/>
-          <Route exact path="/playlist" component={PlaylistRouter}/>
-          <Route component={FourOuFour}/>
+          <Switch>
+            <Route exact path="/" component={HomeRouter} />
+            <Route exact path="/playlist" component={PlaylistRouter} />
+            <Route component={FourOuFour} />
+          </Switch>
         </AppContextProvider>
       </Router>
     );
