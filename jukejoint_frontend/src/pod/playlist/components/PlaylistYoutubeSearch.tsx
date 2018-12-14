@@ -14,6 +14,7 @@ interface IState {
 
 interface IProps {
   toggleAddSongModal: () => void;
+  setLoading: (v:boolean) => void;
 }
 
 interface ISearchResult {
@@ -70,6 +71,7 @@ class PlaylistYoutubeSearch extends Component<IProps, IState> {
   }
 
   public addSongToPlaylist = async (link: string) => {
+    this.props.setLoading(true);
     const res = await PlayerService.getInstance().queueSong(link, PROVIDERS.YOUTUBE);
     if (res.status === 200) {
       this.props.toggleAddSongModal();
