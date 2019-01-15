@@ -7,4 +7,5 @@ export default class BandcampDTO {
   @JsonProperty('artist', String) artist:string = undefined;
   @JsonProperty('image', String) image:string = undefined;
   @JsonProperty('url', String) url:string = undefined;
+  // TODO @JsonProperty('length_seconds', String) length:number = -1;
 }

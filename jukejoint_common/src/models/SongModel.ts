@@ -15,7 +15,8 @@ export default class SongModel {
   artWork:string = '';
   url:string;
   providerType:PROVIDERS;
-
+  duration: number = -1;
+  
   public static buildFromProvider = (provider:ProvidersDTOType, providerType:PROVIDERS, url:string) => {
     const newSong = new SongModel();
     newSong.url = url;
@@ -26,11 +27,13 @@ export default class SongModel {
       newSong.artist = provider.artist;
       newSong.album = provider.album;
       newSong.artWork = provider.image;
+      // TODO newSong.duration = provider.length;
     }
 
     if (provider instanceof YoutubeDTO) {
       newSong.title = provider.title;
       newSong.artWork = provider.thumbnailURL;
+      newSong.duration = provider.duration;
     }
 
     return newSong;
