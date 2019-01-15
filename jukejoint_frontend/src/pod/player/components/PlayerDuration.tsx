@@ -48,6 +48,8 @@ class SongDuration extends Component<IProps, IState> {
             if (nextPlayer!.currentSong != null) {
               this.play(+nextPlayer!.currentSong!.duration);
             }
+            // TODO: handle pause
+            // right now, pause resets the time and pretty much fucks it up
             return true;
       }
     }
