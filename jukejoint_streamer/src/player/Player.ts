@@ -3,6 +3,7 @@ const Speaker = require('speaker');
 const loudness = require('loudness');
 import * as ffmpeg from 'fluent-ffmpeg';
 const playerDebug = require('debug')('jukejoint:player');
+import * as uuid from 'uuid';
 
 // Utils
 import { logger } from '@jukejoint/common/lib/util/general';
@@ -118,10 +119,11 @@ export default class Player {
   }
 
   public add = (song:SongModel) => {
-    const songURLs = this.queue.map((song) => song.url);
+    song.id = uuid.v4();
+    const songIDs = this.queue.map((song) => song.id);
     // Check if song is already there
-    if (!songURLs.includes(song.url)) {
-      this.queue.push(song);
+    if (!songIDs.includes(song.id)) {
+      this.queue.push(song);      
       return true;
     } else {
       return false;
