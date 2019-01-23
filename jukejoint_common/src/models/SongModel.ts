@@ -9,7 +9,6 @@ import { ProvidersDTOType } from '../interfaces';
 // Components
 
 export default class SongModel {
-  id: string = '';
   title:string = '';
   artist:string = '';
   album:string = '';

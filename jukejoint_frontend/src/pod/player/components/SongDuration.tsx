@@ -1,13 +1,11 @@
 import React, { Component } from 'react';
-import { AppContextProp, withAppContext, AppContextType } from '../../../toolkit/util/AppContext';
-import styles from '../styles/PlayerDuration.module.css';
-import { debug } from 'util';
+import styles from '../styles/SongDuration.module.css';
 import { SongModel } from '@jukejoint/common/lib/models';
 
-interface IProps extends AppContextProp {
-  // interval: NodeJS.Timer
-  // currentCount: number;
-  appContext: AppContextType;
+interface IProps {
+  // duration: number;
+  currentSong?: SongModel;
+  isPlaying: boolean
 }
 
 interface IState {
@@ -29,32 +27,32 @@ class SongDuration extends Component<IProps, IState> {
 
 
   componentWillUnmount() {
-    console.log("Unmounting PlayerDuration...");
+    console.log("Unmounting SongDuration...");
     clearInterval(this.interval!);
   }
 
   shouldComponentUpdate(nextProps: Readonly<IProps>, nextState: Readonly<IState>, nextContext: any): boolean {
 
-    const player = this.props.appContext.player;
-    const nextPlayer = nextProps.appContext.player;
-    
-    if (player) {
-      if ((player.currentSong != null && nextPlayer!.currentSong == null) ||
-          player.currentSong == null && nextPlayer!.currentSong != null ||
-          player.currentSong != nextPlayer!.currentSong) {
-            console.log("song changed, resetting timer");
-            // song changed, reset time
-            this.resetTime();
-            if (nextPlayer!.currentSong != null) {
-              this.play(+nextPlayer!.currentSong!.duration);
-            }
-            // TODO: handle pause
-            // right now, pause resets the time and pretty much fucks it up
-            return true;
-      }
-    }
     if (nextState.currentTime != this.state.currentTime) {
       return true
+    }
+    
+    if ((this.props.currentSong != null && nextProps.currentSong == null) ||
+        (this.props.currentSong == null && nextProps.currentSong != null) ||
+        (this.props.currentSong && nextProps.currentSong) && this.props.currentSong.url != nextProps!.currentSong!.url) {
+          console.log("song changed, resetting timer");
+          // song changed, reset time
+          this.resetTime();
+          if (nextProps.currentSong != null) {
+            this.play(+nextProps!.currentSong!.duration);
+          }
+          return true;
+    }
+    if (this.props.currentSong != null) {
+      if (nextProps.isPlaying == false) {
+        this.pause() 
+      }
+      return true;
     }
     return false
   }
@@ -70,7 +68,6 @@ class SongDuration extends Component<IProps, IState> {
       console.log("playing...");
       this.interval = setInterval(() => {
         if (songDuration > this.state.currentTime) {
-          console.log("time inside interval: " +this.state.currentTime)
           this.setState({ currentTime: this.state.currentTime+1})
         }
       }, 1000);
@@ -82,9 +79,9 @@ class SongDuration extends Component<IProps, IState> {
   }
 
   render() {
-    if (this.props.appContext.player && this.props.appContext.player.currentSong) {
+    if (this.props.currentSong) {
       const currentTime = this.secondsToMinutesAndSeconds(this.state.currentTime);
-      const songDurationParsed = this.secondsToMinutesAndSeconds(+this.props.appContext.player.currentSong.duration)
+      const songDurationParsed = this.secondsToMinutesAndSeconds(+this.props.currentSong.duration)
       return (
         <React.Fragment>
           <div className={styles.time}>
@@ -109,4 +106,4 @@ class SongDuration extends Component<IProps, IState> {
   }
 }
 
-export default withAppContext(SongDuration);
+export default SongDuration;

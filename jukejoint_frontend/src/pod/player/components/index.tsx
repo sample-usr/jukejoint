@@ -1,7 +1,7 @@
 import PlayerVolume from './PlayerVolume';
-import PlayerDuration from './PlayerDuration';
+import SongDuration from './SongDuration';
 
 export {
   PlayerVolume,
-  PlayerDuration,
+  SongDuration,
 }
