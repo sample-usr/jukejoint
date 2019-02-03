@@ -51,11 +51,11 @@ class Socket {
     };
 
     this.ws.onmessage = (e: any) => {
-
       const msg: IPlayer = JSON.parse(e.data);
       this.playerState = msg;
       (window as any)._PLAYER_STATE = msg
       console.log(msg);
+      console.log('yo yo')
     };
 
     this.ws.onerror = (e) => {

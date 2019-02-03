@@ -16,6 +16,7 @@ export default class SongModel {
   url:string;
   providerType:PROVIDERS;
   duration: number = -1;
+  currentDuration: 0;
   
   public static buildFromProvider = (provider:ProvidersDTOType, providerType:PROVIDERS, url:string) => {
     const newSong = new SongModel();
