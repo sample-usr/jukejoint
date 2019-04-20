@@ -8,6 +8,9 @@ sudo systemctl daemon-reload
 echo 'enabling auto deploy service'
 sudo systemctl enable auto_deploy.service
 
+echo 'copying shittydj to systemd'
+sudo cp shittydj.service /etc/systemd/system/shittydj.service
+
 echo 'enabling shitty DJ service'
 sudo systemctl enable shittydj.service
 
