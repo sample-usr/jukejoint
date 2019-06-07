@@ -25,9 +25,11 @@ class PlaylistQueue extends Component<IProps, any> {
     return (
       <li onClick={this.onClick}>
         <div className={stylesHelpers.clearfix}>
-          <div className={styles.songImgWrapper}>
-            <img src={img} />
-          </div>
+          {img &&
+            <div className={styles.songImgWrapper}>
+              <img src={img} />
+            </div>
+          }
           <div className={styles.songText}>
             <h3 className={styles.songName}>{title}</h3>
             {description && <p className={styles.songDesc}>{description}</p>}
