@@ -18,6 +18,7 @@
     "typescript": "^3.2.1"
   },
   "dependencies": {
+    "debug": "4.1.1",
     "json2typescript": "^1.0.6",
     "ramda": "^0.26.1"
   }

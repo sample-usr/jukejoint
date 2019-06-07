@@ -6,7 +6,7 @@
   "scripts": {
     "clean": "rm -rf build",
     "build": "yarn clean && tsc",
-    "watch": "nodemon --watch 'src/**/*' -e ts,tsx --exec 'ts-node' ./src/server.ts",
+    "watch": "DEBUG='jukejoint:*' nodemon --watch 'src/**/*' -e ts,tsx --exec 'ts-node' ./src/server.ts",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "author": "",
@@ -15,6 +15,7 @@
     "@jukejoint/common": "^1.0.0",
     "@koa/cors": "2",
     "co-body": "^6.0.0",
+    "debug": "4.1.1",
     "fluent-ffmpeg": "^2.1.2",
     "koa": "^2.6.2",
     "koa-router": "^7.4.0",
@@ -23,7 +24,7 @@
     "loudness": "0.2.2",
     "node-bandcamp": "^0.0.6",
     "speaker": "^0.4.1",
-    "ytdl-core": "^0.28.0"
+    "ytdl-core": "^0.29.2"
   },
   "devDependencies": {
     "@types/fluent-ffmpeg": "^2.1.8",

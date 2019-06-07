@@ -2,6 +2,7 @@ const lame = require('lame');
 const Speaker = require('speaker');
 const loudness = require('loudness');
 import * as ffmpeg from 'fluent-ffmpeg';
+const playerDebug = require('debug')('jukejoint:player');
 
 // Utils
 import { logger } from '@jukejoint/common/lib/util/general';
@@ -44,7 +45,7 @@ export default class Player {
   }
 
   private handleSpeakerClose = () => {
-    logger('# Speaker closed...')
+    playerDebug('speaker closed')
     this.speaker.end();
   }
 
@@ -52,7 +53,7 @@ export default class Player {
     ffmpeg(stream)
       .audioFrequency(44100)
       .format('mp3')
-      .on('end', () => logger('# ffmpeg finished...'));
+      .on('end', () => playerDebug('ffmpeg finished'));
 
   private playStream = (stream:any) => {
     this.decoder = new lame.Decoder();
@@ -66,7 +67,7 @@ export default class Player {
         });
       })
       .on('finish', () => {
-        logger('# Stream finished...');
+        playerDebug('stream finished');
         this.closeStream();
         setTimeout(() => this.playNextSong(), 2000);
       })
@@ -142,7 +143,7 @@ export default class Player {
       vol += 5;
       this.currentVolume = vol;
       loudness.setVolume(vol, () => {
-        console.log('setted Volume to', vol)
+        playerDebug(`increased volume to ${vol}`)
       });
     });
   }
@@ -152,7 +153,7 @@ export default class Player {
       vol -= 5;
       this.currentVolume = vol;
       loudness.setVolume(vol, () => {
-        console.log('setted Volume to', vol)
+        playerDebug(`decreased volume to ${vol}`)
       });
     });
   }

@@ -39,7 +39,6 @@ export default class Provider {
   static getSongInfo = async (url:string, type:PROVIDERS): Promise<SongModel> => {
     //TODO: put try catch
     const provider = Provider.getProviderByType(type);
-    console.log(provider);
     const songInfo = await provider.getSongInfo(url);
 
     return SongModel.buildFromProvider(songInfo, type, url);

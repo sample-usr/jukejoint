@@ -9,7 +9,6 @@ export async function addSong(ctx:any) {
   // console.log(ctx.request.body);
   const request = await parser.json(ctx);
 
-  console.log(request);
   const newSong = await Provider.getSongInfo(request.songURL, request.providerType);
   if (player.add(newSong)) {
     websocketInstance.sendMsg(player.getPlayerState())
