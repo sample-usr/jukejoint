@@ -1,4 +1,3 @@
-import axios from 'axios';
 import { apiRequest } from '../toolkit/util/api';
 import { API_METHOD_TYPE } from '../toolkit/const/api';
 

@@ -29,7 +29,7 @@ export default class YoutubeProvider implements IProvider {
   public getSongInfo  = async (url: string): Promise<YoutubeDTO> => {
     //TODO: put try catch
     const infos = await ytdl.getInfo(url);
-    return jsonConvert.deserialize(infos, YoutubeDTO);
+    return jsonConvert.deserializeObject(infos, YoutubeDTO);
   }
 
   public isValidURL = async (url:string) => {

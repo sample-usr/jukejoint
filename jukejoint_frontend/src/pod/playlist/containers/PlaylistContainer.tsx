@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+import React from 'react';
 
 // Utils
 import { AppContextProp, withAppContext } from '../../../toolkit/util/AppContext';

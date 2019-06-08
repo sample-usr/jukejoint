@@ -30,7 +30,7 @@ export default class BandcampProvider implements IProvider {
     // const infos = await bandcamp.getDetails(url);
     // return jsonConvert.deserialize(infos, BandcampDTO);
 
-    return jsonConvert.deserialize(null, BandcampDTO);
+    return jsonConvert.deserializeObject(null, BandcampDTO);
   }
 
   public isValidURL = async (url:string) => {

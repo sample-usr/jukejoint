@@ -4,7 +4,7 @@
   "scripts": {
     "start": "lerna run watch --parallel --stream",
     "build": "lerna run build --stream"
-	},
+  },
   "workspaces": {
     "packages": [
       "./jukejoint_streamer",
@@ -13,6 +13,6 @@
     ]
   },
   "devDependencies": {
-    "lerna": "^3.5.1"
+    "lerna": "^3.14.1"
   }
 }

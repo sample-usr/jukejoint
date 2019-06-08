@@ -26,7 +26,7 @@ class PlaylistQueue extends Component<IProps, any> {
         <div className={stylesHelpers.clearfix}>
           {img &&
             <div className={styles.songImgWrapper}>
-              <img src={img} />
+              <img src={img} alt="song img"/>
             </div>
           }
           <div className={styles.songText}>

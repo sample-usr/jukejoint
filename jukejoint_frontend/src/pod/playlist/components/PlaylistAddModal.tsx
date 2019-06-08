@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { ReactComponent as IcoClose } from '../../../assets/img/ico/ico-delete.svg';
-import { PlaylistYoutubeSearch, Tabs, PlaylistAddLink } from './';
+import { PlaylistYoutubeSearch } from './';
 // import queueStyles from '../styles/PlaylistQueue.module.css';
 import styles from '../styles/PlaylistAddModal.module.css';
 import stylesHelpers from '../../../assets/css/helpers.module.css'
@@ -20,7 +20,7 @@ class PlaylistAddModal extends Component<IProps, any> {
                     Add song to queue
                     <IcoClose className={`${stylesHelpers.pointer} ${stylesHelpers.floatRight}`} onClick={this.props.toggleAddSongModal} />
                 </h4>
-                
+
                 <PlaylistYoutubeSearch setLoading={this.props.setLoading} toggleAddSongModal={this.props.toggleAddSongModal} />
 
                 {/*<Tabs titles={['Search youtube', 'Paste link', 'Choose playlist']}>*}
@@ -30,10 +30,10 @@ class PlaylistAddModal extends Component<IProps, any> {
                     {/*
                     <PlaylistAddLink toggleAddSongModal={this.props.toggleAddSongModal} />
                     */}
-                    
+
 
                     {/* PLAYLISTS */}
-                    {/* 
+                    {/*
                     <ul className={queueStyles.list}>
                         <PlaylistQueue id="sss" title="Video title" description="say Whaaaaaat?!" img={TestImg} />
                         <PlaylistQueue id="aaa" title="Random title" description="Description??" img={TestImg} />

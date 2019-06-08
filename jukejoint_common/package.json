@@ -14,12 +14,12 @@
   "author": "",
   "license": "ISC",
   "devDependencies": {
-    "@types/ramda": "^0.25.43",
+    "@types/ramda": "^0.26.9",
     "typescript": "^3.2.1"
   },
   "dependencies": {
     "debug": "4.1.1",
-    "json2typescript": "^1.0.6",
+    "json2typescript": "^1.2.3",
     "ramda": "^0.26.1"
   }
 }
