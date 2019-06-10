@@ -6,11 +6,16 @@ const parser = require('co-body');
 const player = Player.getInstance();
 
 export async function addSong(ctx:any) {
-  // console.log(ctx.request.body);
   const request = await parser.json(ctx);
 
   const newSong = await Provider.getSongInfo(request.songURL, request.providerType);
   if (player.add(newSong)) {
+    let playerState = player.getPlayerState();
+
+    if (!playerState.currentSong && playerState.queue.length == 1){
+      await player.play()
+    }
+
     websocketInstance.sendMsg(player.getPlayerState())
     ctx.status = 200;
   } else {
@@ -55,4 +60,9 @@ export async function skipSong(ctx: any) {
   player.skipTrack();
   websocketInstance.sendMsg(player.getPlayerState());
   ctx.status = 200;
+}
+
+export async function ping(ctx: any) {
+  ctx.status = 200;
+  ctx.body = "pong"
 }
