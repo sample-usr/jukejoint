@@ -14,8 +14,8 @@
   "author": "",
   "license": "ISC",
   "devDependencies": {
-    "@types/ramda": "^0.26.9",
-    "typescript": "^3.2.1"
+    "@types/ramda": "^0.26.21",
+    "typescript": "^3.5.3"
   },
   "dependencies": {
     "debug": "4.1.1",
