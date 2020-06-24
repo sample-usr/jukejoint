@@ -9,7 +9,7 @@ import { PlayerService } from '../../../services';
 // Models
 // Interfaces
 // Components
-import { PlayerVolume, PlayerDuration } from '../components';
+import { PlayerVolume, SongDuration } from '../components';
 // Styles
 import styles from '../styles/PlayerContainer.module.css';
 import stylesHelpers from '../../../assets/css/helpers.module.css'
@@ -39,7 +39,7 @@ class PlayerContainer extends Component<Props> {
             </div>
           }
           <PlayerVolume volume={player.volume} setLoading={setLoading} />
-          <PlayerDuration/>
+          <SongDuration currentSong={player.currentSong} isPlaying={player.isPlaying}/>
         </div>
       );
     } else {

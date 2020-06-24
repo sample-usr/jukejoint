@@ -32,6 +32,7 @@ export default class Player {
   private currentSong:SongModel;
   private currentVolume:number = 50;
   private SPEAKER_CLOSE_WAIT = 500;
+  private interval: NodeJS.Timer
 
   public queue:SongModel[] = [];
 
@@ -61,6 +62,7 @@ export default class Player {
     return stream
       .pipe(this.decoder)
       .on('format', () => {
+        // TODO: might be place for interval calculation
         this.decoder.pipe(this.speaker);
         this.speaker.on('close', () => {
           this.handleSpeakerClose()
@@ -76,10 +78,20 @@ export default class Player {
   private playNextSong = () => {
     this.currentSong = null;
     this.isPlaying = false;
+    clearInterval(this.interval);
     return this.play();
   }
 
   public play = async () => {
+    if (this.currentSong || 
+      this.queue.length > 0 && !this.isPlaying) {
+        this.interval = setInterval(() => {
+          if (this.currentSong.duration > this.currentSong.currentDuration) {
+            this.currentSong.currentDuration++;
+            websocketInstance.sendMsg(this.getPlayerState());
+          }
+        }, 1000);    
+    }
     if (this.currentSong) {
       this.resume();
     } else if (this.queue.length > 0 && !this.isPlaying) {
@@ -87,7 +99,7 @@ export default class Player {
       const providerStream = await Provider.getSongStream(nextSong.url, nextSong.providerType);
       this.stream = this.playStream(this.getFFmpegStream(providerStream));
       this.isPlaying = true;
-      this.currentSong = nextSong;
+      this.currentSong = { ... nextSong, currentDuration: 0};
       this.queue.shift();
     } else if (this.isPlaying) {
       // return error
@@ -114,6 +126,7 @@ export default class Player {
     logger('# Pausing song...')
     this.isPlaying = false;
     this.closeStream();
+    clearInterval(this.interval);
     logger('# Song paused...')
   }
 
@@ -121,7 +134,7 @@ export default class Player {
     const songURLs = this.queue.map((song) => song.url);
     // Check if song is already there
     if (!songURLs.includes(song.url)) {
-      this.queue.push(song);
+      this.queue.push(song);      
       return true;
     } else {
       return false;
